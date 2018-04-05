@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import Carouset from '../../src/components/carouset';
 import Tab from '../../src/components/tab';
 
 export default class App extends Component{
@@ -21,12 +20,8 @@ export default class App extends Component{
 	render(){
 		return (
 	        <div>
-
-	            <Tab tabArr={this.state.tabArr}/>
+	            <Tab tabArr={this.state.tabArr}></Tab>
 	        </div>
 		)
 	}
 }
-/*
-*	            <Carouset dataSource={this.state.imgArr}></Carouset>
-*/

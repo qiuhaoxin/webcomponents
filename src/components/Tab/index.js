@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './index.less';
-// import Line from '../Line/index.jsx';
+import Line from '../line';
 import ClassNames from 'classnames';
 
 class Tab extends Component{
@@ -13,25 +13,25 @@ class Tab extends Component{
 	}
 	componentDidMount(){
 	//根据路由初始化indicator
-       const {urlLocation,tabArr}=this.props;
-       let pathname=urlLocation.pathname;
-       let routerItem= tabArr.filter(item=>item.url==pathname);
-       if(routerItem){
-          routerItem=routerItem[0];
-       }
-       tabArr.forEach(itemData=>{
-            if(routerItem.index==itemData.index){
-               itemData['activeElement']=true;
-            }else{
-               itemData['activeElement']=false;
-            }
-        })
-       if(routerItem){
+       const {tabArr}=this.props;
+       //let pathname=urlLocation.pathname;
+       // let routerItem= tabArr.filter(item=>item.url==pathname);
+       // if(routerItem){
+       //    routerItem=routerItem[0];
+       // }
+       // tabArr.forEach(itemData=>{
+       //      if(routerItem.index==itemData.index){
+       //         itemData['activeElement']=true;
+       //      }else{
+       //         itemData['activeElement']=false;
+       //      }
+       //  })
+       //if(routerItem){
 	       this.setState({
-	          linetransformOffset:routerItem['index'] * 100,
+	          //linetransformOffset:routerItem['index'] * 100,
 	          tabArr
 	       })
-       }
+       //}
 	}
 	componentWillReceiveProps(nextProps){
         console.log("nextProps is "+JSON.stringify(nextProps));
@@ -67,6 +67,7 @@ class Tab extends Component{
 	                  })
 	               }
 	           </ul>
+             <Line height="3px" width="100px" lineColor="#2d8cf0" marginStyle="0" translateOffset={this.state.linetransformOffset}/>
 		   </div>
        )
 	}

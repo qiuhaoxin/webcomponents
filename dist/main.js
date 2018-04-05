@@ -1,5 +1,5 @@
 !function(root, factory) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = factory() : "function" == typeof define && define.amd ? define([], factory) : "object" == typeof exports ? exports.Carouset = factory() : root.Carouset = factory();
+    "object" == typeof exports && "object" == typeof module ? module.exports = factory() : "function" == typeof define && define.amd ? define([], factory) : "object" == typeof exports ? exports.wise_webcomponents = factory() : root.wise_webcomponents = factory();
 }("undefined" != typeof self ? self : this, function() {
     /******/
     return function(modules) {
@@ -100,18 +100,11 @@
             return __webpack_require__.d(getter, "a", getter), getter;
         }, __webpack_require__.o = function(object, property) {
             return Object.prototype.hasOwnProperty.call(object, property);
-        }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 6);
+        }, __webpack_require__.p = "", __webpack_require__(__webpack_require__.s = 4);
     }([ /* 0 */
     /***/
-    function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(8);
-        "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
-        var options = {
-            hmr: !0
-        };
-        options.transform = void 0, options.insertInto = void 0;
-        __webpack_require__(2)(content, options);
-        content.locals && (module.exports = content.locals);
+    function(module, exports) {
+        module.exports = require("react");
     }, /* 1 */
     /***/
     function(module, exports) {
@@ -320,7 +313,7 @@
                 }
                 return memo[target];
             };
-        }(), singleton = null, singletonCounter = 0, stylesInsertedAtTop = [], fixUrls = __webpack_require__(9);
+        }(), singleton = null, singletonCounter = 0, stylesInsertedAtTop = [], fixUrls = __webpack_require__(10);
         module.exports = function(list, options) {
             if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
             options = options || {}, options.attrs = "object" == typeof options.attrs ? options.attrs : {}, 
@@ -356,116 +349,40 @@
         }();
     }, /* 3 */
     /***/
-    function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(10);
-        "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
-        var options = {
-            hmr: !0
-        };
-        options.transform = void 0, options.insertInto = void 0;
-        __webpack_require__(2)(content, options);
-        content.locals && (module.exports = content.locals);
-    }, /* 4 */
-    /***/
-    function(module, exports) {
-        module.exports = require("react");
-    }, /* 5 */
-    /***/
     function(module, exports) {
         module.exports = require("classnames");
-    }, /* 6 */
+    }, /* 4 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
         /* eslint no-console:0 */
-        function camelCase(name) {
-            return name.charAt(0).toUpperCase() + name.slice(1).replace(/-(\w)/g, function(m, n) {
-                return n.toUpperCase();
-            });
-        }
-        // Just import style for https://github.com/ant-design/ant-design/issues/3745
-        var req = __webpack_require__(7);
-        console.log("hei"), req.keys().forEach(function(mod) {
-            console.log("mod is " + mod);
-            var v = req(mod);
-            v && v.default && (v = v.default);
-            var match = mod.match(/\.js$/);
-            match && match[1] && ("message" === match[1] || "notification" === match[1] ? // message & notification should not be capitalized
-            exports[match[1]] = v : exports[camelCase(match[1])] = v);
-        }), module.exports = __webpack_require__(11);
-    }, /* 7 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        function webpackContext(req) {
-            return __webpack_require__(webpackContextResolve(req));
-        }
-        function webpackContextResolve(req) {
-            var id = map[req];
-            if (!(id + 1)) // check for number or string
-            throw new Error("Cannot find module '" + req + "'.");
-            return id;
-        }
-        var map = {
-            "./Tab/index.less": 0,
-            "./carouset/index.less": 3
-        };
-        webpackContext.keys = function() {
-            return Object.keys(map);
-        }, webpackContext.resolve = webpackContextResolve, module.exports = webpackContext, 
-        webpackContext.id = 7;
-    }, /* 8 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(1)(!1), // imports
-        // module
-        exports.push([ module.i, ".tab-wrapper {\n  display: flex;\n  flex-direction: column;\n}\n.tab-wrapper ul {\n  display: inline-flex;\n  padding: 0;\n  font-size: 20px;\n  cursor: pointer;\n  color: #4f5255;\n}\n.tab-wrapper ul li {\n  display: inline-flex;\n  list-style: none;\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 15px;\n  height: 40px;\n  min-width: 100px;\n}\n.tab-wrapper ul li:hover {\n  color: #2d8cf0;\n}\n.tab-wrapper ul li.active {\n  color: #2d8cf0;\n}\n.tab-wrapper .wise-line {\n  -webkit-transition: transform 200ms;\n  transition: transform 200ms;\n}\n", "" ]);
-    }, /* 9 */
-    /***/
-    function(module, exports) {
-        /**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-        module.exports = function(css) {
-            // get current location
-            var location = "undefined" != typeof window && window.location;
-            if (!location) throw new Error("fixUrls requires window.location");
-            // blank or null?
-            if (!css || "string" != typeof css) return css;
-            var baseUrl = location.protocol + "//" + location.host, currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-            // send back the fixed css
-            return css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-                // strip quotes (if they exist)
-                var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function(o, $1) {
-                    return $1;
-                }).replace(/^'(.*)'$/, function(o, $1) {
-                    return $1;
-                });
-                // already a full url? no change
-                if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) return fullMatch;
-                // convert the url to a full url
-                var newUrl;
-                // send back the fixed url(...)
-                //TODO: should we add protocol?
-                return newUrl = 0 === unquotedOrigUrl.indexOf("//") ? unquotedOrigUrl : 0 === unquotedOrigUrl.indexOf("/") ? baseUrl + unquotedOrigUrl : currentDir + unquotedOrigUrl.replace(/^\.\//, ""), 
-                "url(" + JSON.stringify(newUrl) + ")";
-            });
-        };
-    }, /* 10 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(1)(!1), // imports
-        // module
-        exports.push([ module.i, ".qhx-carouset {\n  position: relative;\n  width: 100%;\n  height: 500px;\n}\n.qhx-carouset ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset ul li {\n  list-style: none;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset ul li img {\n  height: 500px;\n  width: 100%;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  width: 19px;\n  height: 36px;\n  top: 50%;\n  margin-top: -18px;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n", "" ]);
-    }, /* 11 */
+        // function camelCase(name) {
+        //   return name.charAt(0).toUpperCase() +
+        //     name.slice(1).replace(/-(\w)/g, (m, n) => {
+        //       return n.toUpperCase();
+        //     });
+        // }
+        // // Just import style for https://github.com/ant-design/ant-design/issues/3745
+        // const req = require.context('./src/components', true, /^\.\/[^_][\w-]+\/style\/index\.less?$/);
+        // console.log("hei");
+        // req.keys().forEach((mod) => {
+        // 	console.log("mod is "+mod);
+        //   let v = req(mod);
+        //   if (v && v.default) {
+        //     v = v.default;
+        //   }
+        //   const match = mod.match(/^\.\/([^_][\w-]+)\/index\.js?$/);
+        //   if (match && match[1]) {
+        //     if (match[1] === 'message' || match[1] === 'notification') {
+        //       // message & notification should not be capitalized
+        //       exports[match[1]] = v;
+        //     } else {
+        //       exports[camelCase(match[1])] = v;
+        //     }
+        //   }
+        // });
+        module.exports = __webpack_require__(5);
+    }, /* 5 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -477,21 +394,21 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         });
-        var _carouset = __webpack_require__(12);
+        var _carouset = __webpack_require__(6);
         Object.defineProperty(exports, "Carouset", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_carouset).default;
             }
         });
-        var _Tab = __webpack_require__(16);
+        var _tab = __webpack_require__(13);
         Object.defineProperty(exports, "Tab", {
             enumerable: !0,
             get: function() {
-                return _interopRequireDefault(_Tab).default;
+                return _interopRequireDefault(_tab).default;
             }
         });
-    }, /* 12 */
+    }, /* 6 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -533,10 +450,10 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(13);
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(7);
         _interopRequireDefault(_propTypes);
-        __webpack_require__(3);
-        var _classnames = __webpack_require__(5), _classnames2 = _interopRequireDefault(_classnames), _left_arrow = __webpack_require__(14), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(15), _right_arrow2 = _interopRequireDefault(_right_arrow), Carouset = function(_Component) {
+        __webpack_require__(8);
+        var _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), _left_arrow = __webpack_require__(11), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(12), _right_arrow2 = _interopRequireDefault(_right_arrow), Carouset = function(_Component) {
             function Carouset(props) {
                 _classCallCheck(this, Carouset);
                 var _this = _possibleConstructorReturn(this, (Carouset.__proto__ || Object.getPrototypeOf(Carouset)).call(this, props));
@@ -592,19 +509,76 @@
             } ]), Carouset;
         }(_react.Component);
         exports.default = Carouset;
-    }, /* 13 */
+    }, /* 7 */
     /***/
     function(module, exports) {
         module.exports = require("prop-types");
-    }, /* 14 */
+    }, /* 8 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var content = __webpack_require__(9);
+        "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
+        var options = {
+            hmr: !0
+        };
+        options.transform = void 0, options.insertInto = void 0;
+        __webpack_require__(2)(content, options);
+        content.locals && (module.exports = content.locals);
+    }, /* 9 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        exports = module.exports = __webpack_require__(1)(!1), // imports
+        // module
+        exports.push([ module.i, ".qhx-carouset {\n  position: relative;\n  width: 100%;\n  height: 500px;\n}\n.qhx-carouset ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset ul li {\n  list-style: none;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset ul li img {\n  height: 500px;\n  width: 100%;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  width: 19px;\n  height: 36px;\n  top: 50%;\n  margin-top: -18px;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n", "" ]);
+    }, /* 10 */
+    /***/
+    function(module, exports) {
+        /**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+        module.exports = function(css) {
+            // get current location
+            var location = "undefined" != typeof window && window.location;
+            if (!location) throw new Error("fixUrls requires window.location");
+            // blank or null?
+            if (!css || "string" != typeof css) return css;
+            var baseUrl = location.protocol + "//" + location.host, currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+            // send back the fixed css
+            return css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+                // strip quotes (if they exist)
+                var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function(o, $1) {
+                    return $1;
+                }).replace(/^'(.*)'$/, function(o, $1) {
+                    return $1;
+                });
+                // already a full url? no change
+                if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) return fullMatch;
+                // convert the url to a full url
+                var newUrl;
+                // send back the fixed url(...)
+                //TODO: should we add protocol?
+                return newUrl = 0 === unquotedOrigUrl.indexOf("//") ? unquotedOrigUrl : 0 === unquotedOrigUrl.indexOf("/") ? baseUrl + unquotedOrigUrl : currentDir + unquotedOrigUrl.replace(/^\.\//, ""), 
+                "url(" + JSON.stringify(newUrl) + ")";
+            });
+        };
+    }, /* 11 */
     /***/
     function(module, exports, __webpack_require__) {
         module.exports = __webpack_require__.p + "static/left_arrow.png";
-    }, /* 15 */
+    }, /* 12 */
     /***/
     function(module, exports, __webpack_require__) {
         module.exports = __webpack_require__.p + "static/right_arrow.png";
-    }, /* 16 */
+    }, /* 13 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -646,9 +620,9 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react);
-        __webpack_require__(0);
-        var _classnames = __webpack_require__(5), Tab = (_interopRequireDefault(_classnames), 
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react);
+        __webpack_require__(14);
+        var _classnames = __webpack_require__(3), Tab = (_interopRequireDefault(_classnames), 
         function(_Component) {
             function Tab(props) {
                 _classCallCheck(this, Tab);
@@ -703,5 +677,22 @@
             } ]), Tab;
         }(_react.Component));
         exports.default = Tab;
+    }, /* 14 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var content = __webpack_require__(15);
+        "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
+        var options = {
+            hmr: !0
+        };
+        options.transform = void 0, options.insertInto = void 0;
+        __webpack_require__(2)(content, options);
+        content.locals && (module.exports = content.locals);
+    }, /* 15 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        exports = module.exports = __webpack_require__(1)(!1), // imports
+        // module
+        exports.push([ module.i, ".tab-wrapper {\n  display: flex;\n  flex-direction: column;\n}\n.tab-wrapper ul {\n  display: inline-flex;\n  padding: 0;\n  font-size: 20px;\n  cursor: pointer;\n  color: #4f5255;\n}\n.tab-wrapper ul li {\n  display: inline-flex;\n  list-style: none;\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 15px;\n  height: 40px;\n  min-width: 100px;\n}\n.tab-wrapper ul li:hover {\n  color: #2d8cf0;\n}\n.tab-wrapper ul li.active {\n  color: #2d8cf0;\n}\n.tab-wrapper .wise-line {\n  -webkit-transition: transform 200ms;\n  transition: transform 200ms;\n}\n", "" ]);
     } ]);
 });
