@@ -1,0 +1,48 @@
+{
+  "name": "wise_webcomponents",
+  "version": "1.5.2",
+  "description": "react components for PC web",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-babel": "babel ./main.js --out-file index.js",
+    "start": "cross-env NODE_ENV=development TARGER=development webpack-dev-server --inline --hot",
+    "build": "npm run clean && cross-env NODE_ENV=production TARGER=umd webpack --bail",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "react",
+    "components"
+  ],
+  "author": "qiuhaoxin",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "react-hot-loader": "^4.0.1",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.20.3",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^2.10.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

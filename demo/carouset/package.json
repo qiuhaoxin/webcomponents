@@ -1,0 +1,24 @@
+{
+  "name": "carouset",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test",
+    "carouset"
+  ],
+  "author": "qiuhaoxin",
+  "license": "ISC",
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "wise_webcomponents": "^1.3.2"
+  }
+}
