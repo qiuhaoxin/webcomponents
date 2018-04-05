@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-babel": "babel ./main.js --out-file index.js",
     "start": "cross-env NODE_ENV=development TARGER=development COMP=tab webpack-dev-server --inline --hot",
-    "build": "npm run clean && cross-env NODE_ENV=production TARGER=umd webpack --bail",
+    "prepub": "npm run clean && cross-env NODE_ENV=production TARGER=umd webpack --bail",
     "clean": "rimraf dist"
   },
   "keywords": [
