@@ -4,7 +4,7 @@ const nodeExternals=require("webpack-node-externals");
 const HtmlWebpackPlugin=require('html-webpack-plugin');
 
 const target=process.env.TARGER||"umd";
-const componentDemo=process.env.COMP || 'tab'
+const componentDemo=process.env.COMP || 'imgText'
 const fileloader={
    loader:'file-loader',
    options:{name:'static/[name].[ext]'},
@@ -79,7 +79,7 @@ switch(target){
       config.plugins=[
          new HtmlWebpackPlugin({
             inject:true,
-            template:`./demo/${componentDemo}/index.html`//'./demo/carouset/index.html'
+            template:`./demo/imgText/index.html`//'./demo/carouset/index.html'
          }),
          new webpack.EnvironmentPlugin({NODE_ENV:'development'}),
          new webpack.NoEmitOnErrorsPlugin()
