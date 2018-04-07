@@ -6,7 +6,6 @@ import Line from '../../src/components/line';
 import download from '../imgText/images/download.png';
 import Modal from '../../src/components/modal';
 import Select,{Option,OptGroup} from 'rc-select';
-import 'rc-select/assets/index.less';
 
 export default class App extends Component{
 	constructor(props){
@@ -169,11 +168,6 @@ export default class App extends Component{
                 <div>
                    <div>
                      <label>用户类型:</label>
-                     <Select style={{ width: 500 }} placeholder="搜索下">
-                         <Option value="customer">客户</Option>
-                         <Option value="agent">代理伙伴</Option>
-                         <Option value="goverment">分公司机构</Option>
-                     </Select>
                    </div>
                 </div>
              </Modal>
