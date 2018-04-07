@@ -4,6 +4,9 @@ import Tab from '../../src/components/tab';
 import ImgText from '../../src/components/imgText';
 import Line from '../../src/components/line';
 import download from '../imgText/images/download.png';
+import Modal from '../../src/components/modal';
+import Select,{Option,OptGroup} from 'rc-select';
+import 'rc-select/assets/index.less';
 
 export default class App extends Component{
 	constructor(props){
@@ -56,7 +59,7 @@ export default class App extends Component{
 	        ],
 	        imgTabArr6:[
                {imgPath:require('../imgText/images/package.png'),title:'云之家',desc:'最新版本:V9',
-               render:()=><div className='download-dl'><span><img src={download}/>立即下载</span></div>},
+               render:()=><div className='download-dl'><span onMouseEnter={this.handleDownloadMouseOver} onMouseLeave={this.handleDownloadMouseout}><img src={download}/>立即下载</span></div>},
                {imgPath:require('../imgText/images/package.png'),title:'移动云管理平台',desc:'最新版本：V14.3.11.0',
                render:()=><div className='download-dl'><span><img src={download}/>立即下载</span></div>},
                {imgPath:require('../imgText/images/package.png'),title:'K/3WISE补丁',desc:'持续更新',
@@ -101,6 +104,9 @@ export default class App extends Component{
 	        ]
 		}
 	}
+    state={
+    modalVisible:false
+  }
 	handleMouseOver=(target)=>{
         target.style['background']="rgba(51,153,204,.5)";
         target.style['color']="#fff";
@@ -116,21 +122,61 @@ export default class App extends Component{
            </div>
 		)
 	}
+
+  handleMouseOver2=(target)=>{
+    target.style['box-shadow']="3px 3px 3px 0px rgba(0,0,0,.4)";
+  }
+  handleMouseout2=(target)=>{
+    target.style['box-shadow']="";
+  }
+
+  handleDownloadMouseOver=(e)=>{
+     e.target.style['background']="red";
+  }
+  handleDownloadMouseout=(e)=>{
+     e.target.style['background']="rgb(0,153,255)";
+  }
+
+  handleBtnOk=()=>{
+    console.log("ok");
+      this.setState({
+        modalVisible:false
+      })
+  }
+  handleCancel=()=>{
+    console.log("cancel");
+      this.setState({
+        modalVisible:false
+      })
+  }
+  handleBtnClick=()=>{
+    console.log("click")
+      this.setState({
+        modalVisible:true
+      })
+  }
 	render(){
+     const {modalVisible}=this.state;
 		return (
 	        <div>
-                 <ImgText dataSource={this.state.imgTabArr6} layout="column" className='download-imgtext'/>
-                 <div>
-                    <span>其他相关下载</span>
-                    <ImgText dataSource={this.state.imgTabArr7} layout="row" className='dll-imgtext'/>
-                 </div>
-                 <div>
-                    <span>视频资料下载</span>
-                    <ImgText dataSource={this.state.imgTabArr8} layout="row" className='dll-imgtext'/>
-                    <ImgText dataSource={this.state.imgTabArr9} layout="row" className='dll-imgtext'/>
-                    <ImgText dataSource={this.state.imgTabArr10} layout="row" className='dll-imgtext'/>
-                    <ImgText dataSource={this.state.imgTabArr11} layout="row" className='dll-imgtext'/>
-                 </div>
+             <button onClick={this.handleBtnClick} style={{marginTop:'400px',marginLeft:'400px'}}>Click</button>
+             <Modal 
+                title="Test"
+                onOk={this.handleBtnOk}
+                visible={modalVisible}
+                onCancel={this.handleCancel}
+             >
+                <div>
+                   <div>
+                     <label>用户类型:</label>
+                     <Select style={{ width: 500 }} placeholder="搜索下">
+                         <Option value="customer">客户</Option>
+                         <Option value="agent">代理伙伴</Option>
+                         <Option value="goverment">分公司机构</Option>
+                     </Select>
+                   </div>
+                </div>
+             </Modal>
 	        </div>
 		)
 	}
@@ -139,7 +185,7 @@ export default class App extends Component{
 *	            <Carouset dataSource={this.state.imgArr}></Carouset>
 	            <Tab tabArr={this.state.tabArr}/>
 
-
+              pages help
 	            	          	<div className='help-title-one'>
 	               <div>手册资料</div>
 			    </div>
@@ -154,4 +200,21 @@ export default class App extends Component{
 			    </div>
 			    <ImgText dataSource={this.state.imgTabArr4} layout={'column'} className={'help-imgtext-vedio'} maskerRender={this.handleMaskerRender}/>
 			    <ImgText dataSource={this.state.imgTabArr5} layout={'column'} className={'help-imgtext-vedio'} maskerRender={this.handleMaskerRender}/>
+
+
+          pages download 
+
+
+                           <ImgText dataSource={this.state.imgTabArr6} layout="column" className='download-imgtext' mouseover={this.handleMouseOver2} mouseout={this.handleMouseout2}/>
+                 <div>
+                    <span>其他相关下载</span>
+                    <ImgText dataSource={this.state.imgTabArr7} layout="row" className='dll-imgtext'/>
+                 </div>
+                 <div>
+                    <span>视频资料下载</span>
+                    <ImgText dataSource={this.state.imgTabArr8} layout="row" className='video-imgtext'/>
+                    <ImgText dataSource={this.state.imgTabArr9} layout="row" className='video-imgtext'/>
+                    <ImgText dataSource={this.state.imgTabArr10} layout="row" className='video-imgtext'/>
+                    <ImgText dataSource={this.state.imgTabArr11} layout="row" className='video-imgtext'/>
+                 </div>
 */
