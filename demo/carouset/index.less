@@ -213,7 +213,12 @@ html,body,ul,li,div{
 	display:inline-flex;width:100%;justify-content:flex-start;;margin-left:20px;
     & > div{
        width:50%;
-       display:inline-flex;margin-top:20px;align-items:center;justify-content:center;
+       display:inline-flex;margin-top:20px;align-items:center;justify-content:flex-start;
+       padding-left:20px;
+       & label{
+          width:80px;display:flex;justify-content:flex-end;padding-right:5px;
+       }
+       
     }
     & input{
        height:30px;border:1px solid #eee;border-radius:6px;padding-left:8px;margin-left:5px;

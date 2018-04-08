@@ -1,15 +1,17 @@
 .qhx-dropdown{
 	position:absolute;
-	left:0px;top:33px;overflow:hidden;;right:0;z-index:99;border-bottom-left-radius:6px;border-bottom-right-radius:6px;
+	left:0px;top:33px;overflow:scroll;;right:0;z-index:99;border-bottom-left-radius:6px;border-bottom-right-radius:6px;
+  border-bottom:1px solid #eee;
     &-hide{
-       height:0px;       transition:all .3s ease-in;
+       height:0px;       transition:all .2s ease-in;
     }
     &-show{
-       transition:all .3s ease-in .2s;
+       transition:all .2s ease-in;
     }
     & ul{
       background:#fff;
       width:100%;
+      cursor:pointer;
       & li{
          padding:0px 10px;
          height:30px;
@@ -23,7 +25,7 @@
             bottom:0;
          }
          &:last-child{
-            border-bottom:1px solid #eee;
+            
          }
          &:hover{
             background:rgb(230,247,255)

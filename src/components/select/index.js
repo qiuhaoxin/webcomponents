@@ -10,10 +10,16 @@ class Select extends Component{
    }
    state={
    	  classNameStr:'',
-      dropDownVisible:false
+      dropDownVisible:false,
+      value:'',
+      defaultValue:''
    }
-   componentWidllMount(){
-      
+   componentWillMount(){
+      const {value,defaultValue}=this.props;
+      console.log("value is ");
+      this.setState({
+        value,defaultValue
+      })
    }
    componentDidMount(){
 
@@ -27,15 +33,20 @@ class Select extends Component{
          dropDownVisible:true
       })
    }
+   handleSelectItem=(itemValue)=>{
+       this.setState({
+          value:itemValue
+       })
+   }
    render(){
-     const {value,defaultValue,dataSource}=this.props;
-     const {dropDownVisible}=this.state;
+     const {dataSource}=this.props;
+     const {dropDownVisible,value,defaultValue}=this.state;
    	 return (
         <div className="qhx-select">
            <div className="qhx-select-input" onClick={this.handleClick}>
                <div className="qhx-select-content">{value || defaultValue}</div><div className="qhx-select-icon"></div>
            </div>
-           <DropDown dataSource={dataSource} visible={dropDownVisible}></DropDown>
+           <DropDown dataSource={dataSource} visible={dropDownVisible} itemClick={this.handleSelectItem}></DropDown>
         </div>
    	 )
    }

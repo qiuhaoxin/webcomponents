@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import classNames from 'classnames';
+import
 
 
 class DropDown extends Component{
@@ -47,16 +48,12 @@ class DropDown extends Component{
     const {visible,classNameStr}=this.props;
     if(this.mounted){
       if(!ReactDOM.findDOMNode(this.instance).contains(event.target)){
-        this.count++;
-
-         if(visible && this.count >= 2){
-             const classname=this.buildClassName(classNameStr,!visible);
-             this.instance.style['height']="0px";
-             //this.instance.style['border']="none";
-             this.count=0;
-         }else if(visible && this.count==1){
-           console.log("handleDocumentClick false");
-           //this.instance.style['border']="1px solid #eee";
+         if(visible){
+             this.count++;
+             if(this.count >= 2){
+                this.instance.style['height']="0px";
+                this.count=0;
+             }
          }
       }
     }
@@ -67,6 +64,7 @@ class DropDown extends Component{
   }
   refCallBack(instance){
     this.instance=instance;
+
   }
 
 	componentWillReceiveProps(nextProps){
@@ -81,13 +79,23 @@ class DropDown extends Component{
 	       })
         }
 	}
+  componentShouldUpdate(nextProps,nextState){
+    console.log(nextState)
+  }
   handleDropDownClick=()=>{
        this.setState({
           dropDownVisible:true,
        })
   }
+  handleItemClick=(e,item)=>{
+      console.log("item value is "+item)
+      const {itemClick}=this.props;
+      if(itemClick)itemClick(item);
+      this.instance.style['height']="0px";
+      this.count=0;
+
+  }
 	render(){
-    console.log("hsdfsd");
 		const {dataSource,visible}=this.props
 		const {classname}=this.state;
 		return (
@@ -95,7 +103,8 @@ class DropDown extends Component{
                 <ul>
                     {
                     	dataSource.map((item,index)=>{
-                        if(index==dataSource.length - 1 && visible){
+
+                        if(index==(dataSource.length - 1) && visible){
                           if(this.instance){
                             if(dataSource.length <= 10){
                               this.instance.style['height']=(dataSource.length * 30 +1)+"px";
@@ -106,7 +115,7 @@ class DropDown extends Component{
                           }
                         }
                     		return (
-                               <li key={`dropdown-${index}`} className="dropdown-item">
+                               <li key={`dropdown-${index}`} className="dropdown-item" onClick={(e)=>this.handleItemClick(e,item)}>
                                    {item}
                                </li>
                     		)

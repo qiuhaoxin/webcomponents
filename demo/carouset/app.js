@@ -107,6 +107,7 @@ export default class App extends Component{
 	        ]
 		}
     this.provinceData=getProvince();
+
 	}
     state={
     modalVisible:false,
@@ -168,6 +169,8 @@ export default class App extends Component{
           maskerVisible:true
        })
   }
+
+  
 	render(){
      const {modalVisible,dropDownVisible,maskerVisible}=this.state;
 		return (
@@ -183,12 +186,12 @@ export default class App extends Component{
              >
                 <div>
                    <div className="modal-row">
-                     <div><label>用户类型:</label><Select value="" defaultValue="客户" dataSource={['客户','伙伴代理','分公司机构']}></Select>  </div>           
-                     <div className="modal-row-gover"><label>机构名称:</label><input placeholder="请输入机构名称"/></div>
+                     <div className="modal-row-item"><label>用户类型:</label><Select value="" defaultValue="客户" dataSource={['客户','伙伴代理','分公司机构']}></Select>  </div>           
+                     <div className="modal-row-item"><label>机构名称:</label><input placeholder="请输入机构名称"/></div>
                    </div>
                    <div className="modal-row">
-                     <div><label>省    份:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>           
-                     <div className="modal-row-gover"><label>市:</label><input placeholder="请输入机构名称"/></div>
+                     <div className="modal-row-item"><label>省    份:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>           
+                     <div className="modal-row-item"><label>市:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>
                    </div>
                 </div>
              </Modal>
