@@ -12,7 +12,7 @@ class DropDown extends Component{
         classname:''
 	}
 	componentDidMount(){
-
+       document.addEventListener('click',this.handleDocumentClick,false)
 	}
 	componentWillMount(){
        const {classNameStr,visible}=this.props;
@@ -25,7 +25,11 @@ class DropDown extends Component{
        this.setState({
        	  classname
        })
+
 	}
+  handleDocumentClick(){
+    console.log("document click");
+  }
 
 	componentWillReceiveProps(nextProps){
 		console.log("new "+nextProps.visible+" and old is "+this.props.visible);

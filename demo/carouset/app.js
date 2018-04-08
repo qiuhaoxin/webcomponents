@@ -108,7 +108,8 @@ export default class App extends Component{
 	}
     state={
     modalVisible:false,
-    dropDownVisible:false
+    dropDownVisible:false,
+    maskerVisible:false
   }
 	handleMouseOver=(target)=>{
         target.style['background']="rgba(51,153,204,.5)";
@@ -161,14 +162,15 @@ export default class App extends Component{
   handleDropDownClick=()=>{
     console.log("handleDropDownClick");
        this.setState({
-          dropDownVisible:true
+          dropDownVisible:true,
+          maskerVisible:true
        })
   }
 	render(){
-     const {modalVisible,dropDownVisible}=this.state;
+     const {modalVisible,dropDownVisible,maskerVisible}=this.state;
 		return (
 	        <div>
-             <Masker visible={true}/>
+             <Masker visible={maskerVisible}/>
 
              <button onClick={this.handleBtnClick} style={{marginTop:'400px',marginLeft:'400px'}}>Click</button>
              <Modal 

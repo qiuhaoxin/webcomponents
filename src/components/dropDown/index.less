@@ -1,8 +1,8 @@
 .qhx-dropdown{
 	position:absolute;
-	left:0;bottom:0;overflow:hidden;
+	left:10px;top:20px;overflow:hidden;
     &-hide{
-       height:0;
+       height:0;       transition:height .3s ease-in;
     }
     &-show{
        min-height:50px;
@@ -10,7 +10,16 @@
     }
     & ul{
       background:#fff;
-      position:absolute;
-      left:0
+      width:100%;
+      & li{
+         padding:10px 20px;
+         position:relative;
+         &:after{
+            content:'';
+            position:absolute;
+            left:0;right:0;
+            bottom:0;border-bottom:1px solid #eee;
+         }
+      }
     }
 }
