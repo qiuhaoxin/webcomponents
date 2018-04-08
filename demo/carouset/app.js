@@ -6,6 +6,9 @@ import Line from '../../src/components/line';
 import download from '../imgText/images/download.png';
 import Modal from '../../src/components/modal';
 import Select,{Option,OptGroup} from 'rc-select';
+import DropDown from '../../src/components/dropDown';
+
+import Masker from '../../src/components/masker';
 
 export default class App extends Component{
 	constructor(props){
@@ -104,7 +107,8 @@ export default class App extends Component{
 		}
 	}
     state={
-    modalVisible:false
+    modalVisible:false,
+    dropDownVisible:false
   }
 	handleMouseOver=(target)=>{
         target.style['background']="rgba(51,153,204,.5)";
@@ -154,10 +158,18 @@ export default class App extends Component{
         modalVisible:true
       })
   }
+  handleDropDownClick=()=>{
+    console.log("handleDropDownClick");
+       this.setState({
+          dropDownVisible:true
+       })
+  }
 	render(){
-     const {modalVisible}=this.state;
+     const {modalVisible,dropDownVisible}=this.state;
 		return (
 	        <div>
+             <Masker visible={true}/>
+
              <button onClick={this.handleBtnClick} style={{marginTop:'400px',marginLeft:'400px'}}>Click</button>
              <Modal 
                 title="Test"
@@ -171,6 +183,13 @@ export default class App extends Component{
                    </div>
                 </div>
              </Modal>
+             <div style={{position:'relative'}}>
+               <button onClick={this.handleDropDownClick} >Click DropDown</button>
+               <DropDown visible={dropDownVisible} classNameStr="test" dataSource={['hello','how are you']} >
+
+               </DropDown>
+             </div>
+
 	        </div>
 		)
 	}
@@ -180,9 +199,9 @@ export default class App extends Component{
 	            <Tab tabArr={this.state.tabArr}/>
 
               pages help
-	            	          	<div className='help-title-one'>
+	            <div className='help-title-one'>
 	               <div>手册资料</div>
-			    </div>
+			        </div>
                 <ImgText dataSource={this.state.imgTabArr} layout={'row'} mouseover={this.handleMouseOver} mouseout={this.handleMouseout}/>
                 <ImgText dataSource={this.state.imgTabArr2} layout={'row'}/>
 	          	<div className='help-title-one'>

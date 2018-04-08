@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import classNames from 'classnames';
 import './index.less';
 import PropTypes from 'prop-types';
+import addEventListener from 'rc-util/lib/Dom/addEventListener';
 
 let mousePosition={x:0,y:0};
 class Modal extends Component{

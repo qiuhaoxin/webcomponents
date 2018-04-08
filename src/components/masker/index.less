@@ -1,0 +1,16 @@
+.qhx-masker{
+    position:absolute;
+    left:0;top:0;
+    right:0;bottom:0;
+    background:rgba(0,0,0,.6);
+	&-show{
+	  transform-origin:50% 50%;
+  	  transform:scale(100%);
+	  transition:transform .4s ease-in;
+	}
+	&-hide{
+	  transform-origin:50% 50%;
+	  transform:scale(0);
+	  transition:transform .4s ease-in;
+	}
+}
