@@ -104,16 +104,16 @@ export default class App extends Component{
                {imgPath:require('../imgText/images/dl_play.png'),title:'K3WISE轻应用应收款管理配置视频教程.mp4',desc:'',
                innerRender:()=><div className='download-time'><span>更新日期</span><span>2018-05-12</span><span>下载次数</span><span>271</span></div>,
                render:()=><div className='download-dl'><span>下载</span></div>},
-	        ]
+	        ],
+              modalVisible:false,
+    dropDownVisible:false,
+    maskerVisible:false,
+    provinceVal:'广东省',
+    cityVal:'广州市'
 		}
     this.provinceData=getProvince();
 
 	}
-    state={
-    modalVisible:false,
-    dropDownVisible:false,
-    maskerVisible:false
-  }
 	handleMouseOver=(target)=>{
         target.style['background']="rgba(51,153,204,.5)";
         target.style['color']="#fff";
@@ -170,9 +170,16 @@ export default class App extends Component{
        })
   }
 
+  handleSelect=(value,key)=>{
+     this.setState({
+       [key]:value
+     })
+  }
+
   
 	render(){
-     const {modalVisible,dropDownVisible,maskerVisible}=this.state;
+     const {modalVisible,dropDownVisible,maskerVisible,provinceVal,cityVal}=this.state;
+     console.log("app provinceVal is "+provinceVal)
 		return (
 	        <div>
              <Masker visible={false}/>
@@ -190,14 +197,16 @@ export default class App extends Component{
                      <div className="modal-row-item"><label>机构名称:</label><input placeholder="请输入机构名称"/></div>
                    </div>
                    <div className="modal-row">
-                     <div className="modal-row-item"><label>省    份:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>           
+                     <div className="modal-row-item"><label>省    份:</label>
+                     <Select value={provinceVal} onChange={(value)=>this.handleSelect(value)} defaultValue={provinceVal} 
+                     dataSource={this.provinceData}></Select></div>           
                      <div className="modal-row-item"><label>市:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>
                    </div>
                 </div>
              </Modal>
 
 
-             <Select value="" defaultValue="广东省" dataSource={['广东省','广西省','香港特别行政区']}></Select>
+           
 	        </div>
 		)
 	}

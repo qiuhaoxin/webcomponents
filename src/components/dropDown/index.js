@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import classNames from 'classnames';
-import
+import {is,fromJS} from 'immutable';
 
 
 class DropDown extends Component{
@@ -33,9 +33,7 @@ class DropDown extends Component{
        })
 
 	}
-  componentWillUpdate(){
 
-  }
   buildClassName=(classNameStr,visible)=>{
        const visibleStr=visible ? 'show' : 'hide';
        const classname=classNames([
@@ -79,8 +77,8 @@ class DropDown extends Component{
 	       })
         }
 	}
-  componentShouldUpdate(nextProps,nextState){
-    console.log(nextState)
+  shouldComponentUpdate(nextProps,nextState){
+    return !is(fromJS(nextProps),fromJS(this.props)) || is(fromJS(nextState),fromJS(this.state));
   }
   handleDropDownClick=()=>{
        this.setState({
@@ -98,6 +96,7 @@ class DropDown extends Component{
 	render(){
 		const {dataSource,visible}=this.props
 		const {classname}=this.state;
+    console.log("render");
 		return (
             <div className={classname} ref={this.refCallBack}>
                 <ul>

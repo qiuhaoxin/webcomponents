@@ -16,7 +16,8 @@ class Select extends Component{
    }
    componentWillMount(){
       const {value,defaultValue}=this.props;
-      console.log("value is ");
+      console.log("value is "+value+" and defaultValue is "
+        +defaultValue);
       this.setState({
         value,defaultValue
       })
@@ -34,12 +35,16 @@ class Select extends Component{
       })
    }
    handleSelectItem=(itemValue)=>{
+       const {onChange}=this.props;
+       if(onChange)onChange(itemValue);
        this.setState({
-          value:itemValue
+          //value:itemValue,
+          dropDownVisible:false
        })
    }
    render(){
      const {dataSource}=this.props;
+     console.log("render value is "+value+" and defaultValue is "+defaultValue)
      const {dropDownVisible,value,defaultValue}=this.state;
    	 return (
         <div className="qhx-select">
