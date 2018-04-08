@@ -5,10 +5,11 @@ import ImgText from '../../src/components/imgText';
 import Line from '../../src/components/line';
 import download from '../imgText/images/download.png';
 import Modal from '../../src/components/modal';
-import Select,{Option,OptGroup} from 'rc-select';
 import DropDown from '../../src/components/dropDown';
 
 import Masker from '../../src/components/masker';
+import Select from '../../src/components/select';
+import {getProvince,getCity} from './data/province';
 
 export default class App extends Component{
 	constructor(props){
@@ -105,6 +106,7 @@ export default class App extends Component{
                render:()=><div className='download-dl'><span>下载</span></div>},
 	        ]
 		}
+    this.provinceData=getProvince();
 	}
     state={
     modalVisible:false,
@@ -172,7 +174,7 @@ export default class App extends Component{
 	        <div>
              <Masker visible={false}/>
 
-             <button onClick={this.handleBtnClick} style={{marginTop:'400px',marginLeft:'400px'}}>Click</button>
+             <button onClick={this.handleBtnClick} style={{marginTop:'100px',marginLeft:'100px'}}>Click</button>
              <Modal 
                 title="Test"
                 onOk={this.handleBtnOk}
@@ -180,19 +182,19 @@ export default class App extends Component{
                 onCancel={this.handleCancel}
              >
                 <div>
-                   <div>
-                     <label>用户类型:</label>
+                   <div className="modal-row">
+                     <div><label>用户类型:</label><Select value="" defaultValue="客户" dataSource={['客户','伙伴代理','分公司机构']}></Select>  </div>           
+                     <div className="modal-row-gover"><label>机构名称:</label><input placeholder="请输入机构名称"/></div>
+                   </div>
+                   <div className="modal-row">
+                     <div><label>省    份:</label><Select value="" defaultValue="北京" dataSource={this.provinceData}></Select></div>           
+                     <div className="modal-row-gover"><label>市:</label><input placeholder="请输入机构名称"/></div>
                    </div>
                 </div>
              </Modal>
-             <div style={{position:'relative'}}>
-               <button onClick={this.handleDropDownClick} >Click DropDown</button>
-               <DropDown visible={dropDownVisible} classNameStr="test" 
-               dataSource={['hello','how are you','what is your name','just for test','hello world!','just for single']} >
 
-               </DropDown>
-             </div>
 
+             <Select value="" defaultValue="广东省" dataSource={['广东省','广西省','香港特别行政区']}></Select>
 	        </div>
 		)
 	}

@@ -1,0 +1,25 @@
+.qhx-select{
+    width:180px;
+    position:relative;
+	&-input{
+	   border:1px solid #eee;
+	   border-radius:6px;
+	   width:100%;padding:5px 0;
+	   display:inline-flex;
+	   & .qhx-select-content{
+	      flex-grow:2;padding-left:4px;
+	   }
+       & .qhx-select-icon{
+            position:relative;
+	        &:before{
+			     content:'';
+			     position:absolute;
+			     right:7px;
+			     border-top:6px solid #555;
+			     border-left:6px solid transparent;
+			     border-right:6px solid transparent;
+			     top:50%;margin-top:-3px;
+		   }
+       }
+	}
+}
