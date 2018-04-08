@@ -170,7 +170,7 @@ export default class App extends Component{
      const {modalVisible,dropDownVisible,maskerVisible}=this.state;
 		return (
 	        <div>
-             <Masker visible={maskerVisible}/>
+             <Masker visible={false}/>
 
              <button onClick={this.handleBtnClick} style={{marginTop:'400px',marginLeft:'400px'}}>Click</button>
              <Modal 
@@ -187,7 +187,8 @@ export default class App extends Component{
              </Modal>
              <div style={{position:'relative'}}>
                <button onClick={this.handleDropDownClick} >Click DropDown</button>
-               <DropDown visible={dropDownVisible} classNameStr="test" dataSource={['hello','how are you']} >
+               <DropDown visible={dropDownVisible} classNameStr="test" 
+               dataSource={['hello','how are you','what is your name','just for test','hello world!','just for single']} >
 
                </DropDown>
              </div>
