@@ -78,7 +78,8 @@ class DropDown extends Component{
         }
 	}
   shouldComponentUpdate(nextProps,nextState){
-    return !is(fromJS(nextProps),fromJS(this.props)) || is(fromJS(nextState),fromJS(this.state));
+
+    return true;
   }
   handleDropDownClick=()=>{
        this.setState({
@@ -86,7 +87,6 @@ class DropDown extends Component{
        })
   }
   handleItemClick=(e,item)=>{
-      console.log("item value is "+item)
       const {itemClick}=this.props;
       if(itemClick)itemClick(item);
       this.instance.style['height']="0px";
@@ -96,7 +96,6 @@ class DropDown extends Component{
 	render(){
 		const {dataSource,visible}=this.props
 		const {classname}=this.state;
-    console.log("render");
 		return (
             <div className={classname} ref={this.refCallBack}>
                 <ul>

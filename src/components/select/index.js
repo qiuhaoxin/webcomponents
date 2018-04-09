@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import classNames from 'classnames';
 import './index.less';
 import DropDown from '../dropDown';
+import {is,fromJS} from 'immutable';
 
 
 class Select extends Component{
@@ -28,6 +29,9 @@ class Select extends Component{
    componentWillReceiveProps(nextProps){
 
    }
+   shouldComponentUpdate(nextProps,nextState){
+      return !is(fromJS(nextProps),fromJS(this.props)) || !is(fromJS(nextState),fromJS(this.state));
+   }
    handleClick=(e)=>{
       console.log("dropDownVisible is "+this.state.dropDownVisible);
       this.setState({
@@ -38,14 +42,13 @@ class Select extends Component{
        const {onChange}=this.props;
        if(onChange)onChange(itemValue);
        this.setState({
-          //value:itemValue,
           dropDownVisible:false
        })
    }
    render(){
-     const {dataSource}=this.props;
+     const {dataSource,value,defaultValue}=this.props;
      console.log("render value is "+value+" and defaultValue is "+defaultValue)
-     const {dropDownVisible,value,defaultValue}=this.state;
+     const {dropDownVisible}=this.state;
    	 return (
         <div className="qhx-select">
            <div className="qhx-select-input" onClick={this.handleClick}>
