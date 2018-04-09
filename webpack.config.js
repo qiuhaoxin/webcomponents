@@ -7,7 +7,7 @@ const target=process.env.TARGER||"umd";
 const componentDemo=process.env.COMP || 'imgText'
 const fileloader={
    loader:'file-loader',
-   options:{name:'static/[name].[ext]'},
+   
 };
 
 let config={
@@ -61,6 +61,13 @@ switch(target){
        })
      ];
      config.entry="./index";
+     config.output={
+       path:path.resolve(__dirname,"dist"),
+       publicPath:'./',
+       filename:'[name].js',
+       libraryTarget:'umd',
+       library:'wise_webcomponents',
+     }
      config.module.rules.push({
         test:/\.(jpe?g|png|ico|git|svg)/,
         use:[fileloader],

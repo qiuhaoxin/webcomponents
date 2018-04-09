@@ -34,6 +34,7 @@ export default class App extends Component{
           ['13.1','14.0'],
           ['14.2','14.3']
     ]
+    this.testData=[];
     console.log("cityData is "+JSON.stringify(this.cityData));
 	}
 	handleMouseOver=(target)=>{
@@ -42,13 +43,13 @@ export default class App extends Component{
 	}
 	handleMouseout=(target)=>{
 		target.style['background']="#fff";
-        target.style['color']="#000";
+    target.style['color']="#000";
 	}
 	handleMaskerRender=()=>{
 		return (
-           <div className='qhx-imgtext-masker'>
-               <img src={require('../imgText/images/play.png')}/>
-           </div>
+        <div className='qhx-imgtext-masker'>
+            <img src={require('../imgText/images/play.png')}/>
+        </div>
 		)
 	}
 
@@ -79,7 +80,6 @@ export default class App extends Component{
   }
 
   handleSelect=(value,key)=>{
-    console.log("key is "+key);
     if(key=='provinceVal'){
         this.cityData=getCity(value);
     }
@@ -100,6 +100,9 @@ export default class App extends Component{
     this.setState({
        [key]:e.target.value
     })
+  }
+  handleDownloadClick=(data)=>{
+    console.log("data is "+data);
   }
 
   
@@ -138,7 +141,7 @@ export default class App extends Component{
                    </div>
                 </div>
              </Modal>
-             <Exchange dataSource={this.exchangeData}/>
+             <Exchange dataSource={this.exchangeData} imgPath={require('./images/download.png')} downloadEvent={this.handleDownloadClick}/>
 
            
 	        </div>

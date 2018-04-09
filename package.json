@@ -1,6 +1,6 @@
 {
   "name": "wise_webcomponents",
-  "version": "1.6.2",
+  "version": "1.8.0",
   "description": "react components for PC web",
   "main": "dist/main.js",
   "scripts": {
