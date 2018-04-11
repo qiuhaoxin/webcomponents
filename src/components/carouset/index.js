@@ -11,10 +11,19 @@ class Carouset extends Component{
 		this.prefixCls="qhx-carouset";
 		this.classNameStr="";
     this.state={
-      imgArr:[]
+      imgArr:[],
+      currentImg:0
     }
 	}
+  componentWillMount(){
 
+  }
+  componentWillReceiveProps(nextProps){
+
+  }
+  shouldComponentUpdate(nextProps,nextState){
+    return true;
+  }
 
 	componentDidMount(){
        const {dataSource,classNameStr}=this.props;
