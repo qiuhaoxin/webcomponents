@@ -7,7 +7,7 @@ const target=process.env.TARGER||"umd";
 const componentDemo=process.env.COMP || 'imgText'
 const fileloader={
    loader:'file-loader',
-   
+   options:{name:'static/[name].[ext]'}
 };
 
 let config={

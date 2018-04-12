@@ -11,12 +11,14 @@ class Carouset extends Component{
 		this.prefixCls="qhx-carouset";
 		this.classNameStr="";
     this.state={
-      imgArr:[],
-      currentImg:0
+       imageLoaded:false
     }
 	}
   componentWillMount(){
-
+       console.log("iamgeN is "+this.props.imageName);
+       this.classNameStr=classNames([
+          `${this.prefixCls}-wrapper`
+        ],'qhx-carouset')
   }
   componentWillReceiveProps(nextProps){
 
@@ -26,17 +28,38 @@ class Carouset extends Component{
   }
 
 	componentDidMount(){
-       const {dataSource,classNameStr}=this.props;
-       this.classNameStr=classNames([
-          `${this.prefixCls}-wrapper`
-       	],'qhx-carouset')
-       console.log("dataSource is "+JSON.stringify(dataSource));
-       this.setState({
-         imgArr:dataSource
-       })
+       const {dataSource,classNameStr,currentImg}=this.props;
+
+       console.log("classNameStr is "+this.classNameStr)
+      // this.preloadImage(currentImg,this.handleImageLoaded);
 	}
   handleArrowClick=(dir)=>{
+     
+  }
+  handleImageLoaded=()=>{
+    this.setState({
+      imageLoaded:true
+    })
+  }
+  //预加载图片
+  preloadImage=(index,onload)=>{
+      const {dataSource}=this.props;
+      console.log("dataSource is "+JSON.stringify(dataSource));
+      const imgData=dataSource[index];
+
+      let img=new Image();
+      img.onerror=onload;
+      img.onload=onload;
+      img.src=imgData.src;
+
+      return img;
+
+  }
+  goToNext=()=>{
     
+  }
+  goToPre=()=>{
+
   }
   //渲染左右滑动的箭头
   renderDefaultArrow=(dir)=>{
@@ -48,17 +71,18 @@ class Carouset extends Component{
       )
   }
   renderIndirators=()=>{
-    const {imgArr}=this.state;
+    const {dataSource,currentImg}=this.props;
     return (
        <div className="qhx-carouset-indicator">
           {
-            imgArr.map((item,index)=><span className='qhx-carouset-indicator-dot' key={`indicator-${index}`}></span>)
+            dataSource.map((item,index)=><span className='qhx-carouset-indicator-dot' key={`indicator-${index}`}></span>)
           }
        </div>
     )
   }
 	render(){
-		const {imgArr,slideDom}=this.state;
+    const {dataSource}=this.props;
+		const {slideDom}=this.state;
 		return (
           <div className={this.classNameStr}>
               {
@@ -66,7 +90,7 @@ class Carouset extends Component{
               }
               <ul>
                  {
-                    imgArr.map((item,index)=><li key={`carouset-${index}`}><img src={item.imgPath}/></li>)
+                    dataSource.map((item,index)=><li key={`carouset-${index}`}><img src={item.imgPath}/></li>)
                   }
               </ul>
               {

@@ -11,22 +11,20 @@ import Masker from '../../src/components/masker';
 import Select from '../../src/components/select';
 import {getProvince,getCity} from './data/province';
 
+import imageN from './images/mobileImg.jpg';
 export default class App extends Component{
   constructor(props){
     super(props);
     this.state={
-      imgArr:[
-              {imgPath:require('./images/mobileImg.jpg'),imgName:'test'},
-              {imgPath:require('./images/mobileImg3.jpg'),imgName:'test'}
-        ],
-          modalVisible:false,
-          dropDownVisible:false,
-          maskerVisible:false,
-          provinceVal:'广东省',
-          cityVal:'广州市',
-          tel:'',
-          concat:'',
-          goverment:''
+      // imgArr:[
+      //         {imgPath:require('./images/mobileImg.jpg'),imgName:'test'},
+      //         {imgPath:require('./images/mobileImg3.jpg'),imgName:'test'}
+      //   ],
+
+        imgArr:[
+           {src:'./images/mobileImg.jpg',imgName:'test',index:0},
+           {src:'./images/mobileImg3.jpg',imgName:'test',index:1}
+        ]
     }
 
   }
@@ -35,7 +33,7 @@ export default class App extends Component{
      console.log("app provinceVal is "+provinceVal)
     return (
           <div>
-             <Carouset dataSource={this.state.imgArr}></Carouset>
+             <Carouset dataSource={this.state.imgArr} currentImg={0} imageName={imageN}></Carouset>
           </div>
     )
   }
