@@ -11,7 +11,8 @@ import Masker from '../../src/components/masker';
 import Select from '../../src/components/select';
 import {getProvince,getCity} from './data/province';
 
-import imageN from './images/mobileImg.jpg';
+import image1 from './images/mobileImg.jpg';
+import image2 from './images/mobileImg3.jpg';
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -22,8 +23,8 @@ export default class App extends Component{
       //   ],
 
         imgArr:[
-           {src:'./images/mobileImg.jpg',imgName:'test',index:0},
-           {src:'./images/mobileImg3.jpg',imgName:'test',index:1}
+           {src:image1,imgName:'test',index:0},
+           {src:image2,imgName:'test',index:1}
         ]
     }
 
@@ -33,7 +34,7 @@ export default class App extends Component{
      console.log("app provinceVal is "+provinceVal)
     return (
           <div>
-             <Carouset dataSource={this.state.imgArr} currentImg={0} imageName={imageN}></Carouset>
+             <Carouset dataSource={this.state.imgArr} currentImg={0} ></Carouset>
           </div>
     )
   }

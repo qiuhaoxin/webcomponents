@@ -31,7 +31,7 @@ class Carouset extends Component{
        const {dataSource,classNameStr,currentImg}=this.props;
 
        console.log("classNameStr is "+this.classNameStr)
-      // this.preloadImage(currentImg,this.handleImageLoaded);
+       this.preloadImage(currentImg,this.handleImageLoaded);
 	}
   handleArrowClick=(dir)=>{
      
@@ -90,7 +90,7 @@ class Carouset extends Component{
               }
               <ul>
                  {
-                    dataSource.map((item,index)=><li key={`carouset-${index}`}><img src={item.imgPath}/></li>)
+                    dataSource.map((item,index)=><li key={`carouset-${index}`}><img src={item.src}/></li>)
                   }
               </ul>
               {
