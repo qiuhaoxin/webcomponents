@@ -4,8 +4,20 @@ import './index.less';
 import classNames from 'classnames';
 import leftArrow from '../../images/left_arrow.png';
 import rightArrow from '../../images/right_arrow.png';
+import {getWindowWidth,getWidowHeight} from '../utils/util';
 
 class Carouset extends Component{
+  static getTransform({x=0,y=0,width,targetWidth}){
+    let nextX=x;
+    const windowWidth=getWindowWidth();
+    if(width > windowWidth){
+      nextX += (windowWidth - width) / 2;
+    }
+    return {
+      transform:`translate3d(${nextX}px,${y}px,0)`
+    }
+
+  }
 	constructor(props){
 		super(props);
 		this.prefixCls="qhx-carouset";
@@ -15,10 +27,11 @@ class Carouset extends Component{
     }
 	}
   componentWillMount(){
-       console.log("iamgeN is "+this.props.imageName);
        this.classNameStr=classNames([
           `${this.prefixCls}-wrapper`
         ],'qhx-carouset')
+
+       this.imageCache={};
   }
   componentWillReceiveProps(nextProps){
 
@@ -36,6 +49,7 @@ class Carouset extends Component{
   handleArrowClick=(dir)=>{
      
   }
+
   handleImageLoaded=()=>{
     this.setState({
       imageLoaded:true
@@ -53,6 +67,80 @@ class Carouset extends Component{
       img.src=imgData.src;
 
       return img;
+
+  }
+  getSrcType(){
+    return [
+       {
+          name:'mainSrc',
+       },
+       {
+          name:'nextSrc',
+       },
+       {
+          name:'preSrc'
+       }
+    ]
+  }
+  isImageLoaded=(imageSrc)=>{
+     return {
+        imageSrc && imageSrc in this.imageCache && this.imageCache[imageSrc].loaded
+     }
+  }
+  loadAllImages=(props=this.props)=>{
+     const generateLoadDoneCallback=(srcType,imageSrc)=>err=>{
+        if(err){
+          return ;
+        }
+        if(this.props[srcType]!==imageSrc){
+          return;
+        }
+        this.forceUpdate();
+     };
+     this.getSrcType().forEach(srcType=>{
+        const type=srcType.name;
+        if(props[type] && this.state.loadErrorStatus[type]){
+          this.setState(preState=>({
+              loadErrorStatus:{...preState.loadErrorStatus,[type]:false},
+          }));
+        }
+        if(props[type] && !this.isImageLoaded(props[type])){
+            this.loadImage(type,props[type],generateLoadDoneCallback(type,props[type]));
+        }
+     })
+
+  }
+  loadImage=(srcType,imageSrc,done)=>{
+     if(this.isImageLoaded(imageSrc)){
+        this.setTimeout(()=>{
+           done();
+        },1);
+        return;
+     }
+     const inMemoryImage=new Image();
+
+     inMemoryImage.onerror=errorEvent=>{
+
+     }
+     inMemoryImage.onload=()=>{
+        this.props.onImageLoad(imageSrc,srcType,inMemoryImage);
+        this.imageCache[imageSrc]={
+           loaded:true,
+           width:inMemoryImage.width,
+           height:inMemoryImage.height,
+        };
+        done();
+     }
+     inMemoryImage.src=imageSrc;
+  }
+  getBestImageForType=(srcType)=>{
+     let imageSrc=this.props[srcType];
+     let fitSize={};
+     if(this.isImageLoaded[imageSrc]){
+        fitSize=this.
+     }
+  }
+  getFitSize=(width,height,stretch)=>{
 
   }
   goToNext=()=>{
@@ -81,11 +169,40 @@ class Carouset extends Component{
     )
   }
 	render(){
-    const {dataSource}=this.props;
+    const {dataSource,animationDisabled,animationDuration}=this.props;
 		const {slideDom}=this.state;
+    let images=[];
+    let transitionStyle={};
+
+    if(!animationDisabled){
+      transitionStyle={
+        ...transitionStyle,
+        transition:`transform ${}ms`,
+      }
+    }
+    const addImage(srcType,imageClass,transform)=>{
+       if(!this.props[srcType]){
+        return;
+       }
+       const imageStyle={
+          ...transitionStyle,
+          ...Carouset.getTransform({
+            ...transform,
+
+          })
+       }
+    }
 		return (
           <div className={this.classNameStr}>
-              {
+
+          </div>
+		)
+	}
+}
+export default Carouset;
+
+/*
+*              {
                 slideDom ? '' : this.renderDefaultArrow('0')
               }
               <ul>
@@ -99,8 +216,4 @@ class Carouset extends Component{
               {
                 this.renderIndirators()
               }
-          </div>
-		)
-	}
-}
-export default Carouset;
+*/
