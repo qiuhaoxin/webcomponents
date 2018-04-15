@@ -41,6 +41,7 @@ class Carouset extends Component{
        this.imageCache={};
        this.keyCounter=0;
        this.moveRequested=false;
+       this.timeouts=[];
   }
   componentWillReceiveProps(nextProps){
     let sourcesChange=false;
@@ -84,6 +85,12 @@ class Carouset extends Component{
         offsetX:0,
         offsetY:0,
       };
+      if(!this.props.animationDisabled){
+        nextState.shouldAnimate=true;
+        this.setTimeout(()=>this.setState({shouldAnimate:false}),
+        this.props.animationDuration);
+      }
+      this.moveRequested=true;
       if(direction=='pre'){
         this.keyCounter-=1;
         this.setState(nextState);
@@ -258,6 +265,16 @@ class Carouset extends Component{
         </div>
       )
   }
+  setTimeout(func,time){
+    const id=setTimeout(()=>{
+       func();
+    },time);
+    this.timeouts.push(id);
+    return id;
+  }
+  isAnimating=()=>{
+    return this.state.shouldAnimate;
+  }
   renderIndirators=()=>{
     const {dataSource,currentImg}=this.props;
     return (
@@ -276,13 +293,16 @@ class Carouset extends Component{
     const boxSize=this.getCarousetRect();
     let transitionStyle={};
 
-    if(!animationDisabled){
-      console.log("sdfsdfsdfsdf");
+    //if(!animationDisabled && this.isAnimating()){
       transitionStyle={
         ...transitionStyle,
-        transition:`transform ${animationDuration}ms`,
+        transition:`transform ${animationDuration}ms linear`,
       }
-    }
+    //}
+    let keyEndings={};
+    this.getSrcType().forEach(({name,keyEnding})=>{
+       keyEndings[name]=keyEnding;
+    })
     const addImage=(srcType,imageClass,transform)=>{
      // console.log("srcType is "+srcType+" and imageSrc is "+this.props[srcType]);
        if(!this.props[srcType]){
@@ -297,6 +317,7 @@ class Carouset extends Component{
             ...bestImageInfo,
           }),
        };
+       console.log("imageStyle is "+JSON.stringify(imageStyle));
        const hasTrueValue=(object) =>{
           return Object.keys(object).some(key => object[key]);
        } 
@@ -315,9 +336,9 @@ class Carouset extends Component{
        const imageSrc=bestImageInfo.src;
        images.push(
             <img 
-            style={imageStyle}
+               style={imageStyle}
                src={imageSrc}
-
+               key={imageSrc+keyEndings[srcType]}
             />
        )
     }

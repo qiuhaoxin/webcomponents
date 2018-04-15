@@ -11,9 +11,9 @@ import Masker from '../../src/components/masker';
 import Select from '../../src/components/select';
 import {getProvince,getCity} from './data/province';
 
-import image1 from './images/mobileImg.jpg';
-import image2 from './images/mobileImg3.jpg';
-const images=[image2,image1];
+import image1 from './images/mobile_n.jpg';
+import image2 from './images/mobile_m.jpg';
+const images=[image1,image2];
 export default class App extends Component{
   static onImageLoadError(imageSrc,_srcType,errorEvent){
      console.error(`Could not load image at ${imageSrc}`,errorEvent);
@@ -55,7 +55,6 @@ export default class App extends Component{
                onMovePreRequest={this.movePre}
                onMoveNextRequest={this.moveNext}
                onImageLoadError={App.onImageLoadError}
-               animationDuration={'200'}
                animationDisabled={false}
              ></Carouset>
           </div>
