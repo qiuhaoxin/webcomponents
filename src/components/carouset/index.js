@@ -336,20 +336,21 @@ class Carouset extends Component{
        const imageSrc=bestImageInfo.src;
        images.push(
             <img 
+               className={`${imageClass}`}
                style={imageStyle}
                src={imageSrc}
                key={imageSrc+keyEndings[srcType]}
             />
        )
     }
-    addImage('nextSrc','',{
+    addImage('nextSrc','ril-image-next',{
       x:boxSize.width,
     })
-    addImage('mainSrc','',{
+    addImage('mainSrc','ril-image-current',{
       x:-1 * offsetX,
       y:-1 * offsetY,
     });
-    addImage('preSrc','',{
+    addImage('preSrc','ril-image-prev',{
       x:-1 * boxSize.width
     })
 
