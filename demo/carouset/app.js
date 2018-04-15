@@ -13,7 +13,11 @@ import {getProvince,getCity} from './data/province';
 
 import image1 from './images/mobileImg.jpg';
 import image2 from './images/mobileImg3.jpg';
+const images=[image2,image1];
 export default class App extends Component{
+  static onImageLoadError(imageSrc,_srcType,errorEvent){
+     console.error(`Could not load image at ${imageSrc}`,errorEvent);
+  }
   constructor(props){
     super(props);
     this.state={
@@ -25,16 +29,35 @@ export default class App extends Component{
         imgArr:[
            {src:image1,imgName:'test',index:0},
            {src:image2,imgName:'test',index:1}
-        ]
+        ],
+        index:0,
     }
 
   }
+  movePre=()=>{
+    this.setState(preState=>({
+      index:((preState.index + images.length - 1) % images.length)
+    }))
+  }
+  moveNext=()=>{
+    this.setState(preState=>({
+      index:((preState.index - 1 + images.length) % images.length)
+    }))
+  }
   render(){
-     const {modalVisible,dropDownVisible,maskerVisible,provinceVal,cityVal,tel,concat,goverment}=this.state;
-     console.log("app provinceVal is "+provinceVal)
+     const {imgArr,index}=this.state;
     return (
           <div>
-             <Carouset dataSource={this.state.imgArr} currentImg={0} ></Carouset>
+             <Carouset
+               mainSrc={images[index]}
+               nextSrc={images[(index + 1 +images.length) % images.length]}
+               preSrc={images[(index - 1 + images.length) % images.length]}
+               onMovePreRequest={this.movePre}
+               onMoveNextRequest={this.moveNext}
+               onImageLoadError={App.onImageLoadError}
+               animationDuration={'200'}
+               animationDisabled={false}
+             ></Carouset>
           </div>
     )
   }

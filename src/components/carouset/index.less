@@ -1,19 +1,25 @@
-
+.test{
+  position:absolute;left:0;right:0;top:0;bottom:0;
+  & img{
+     position:absolute;
+     right:0;left:0;top:0;
+  }
+}
 .qhx-carouset{
     width:100%;
-    position:relative;
-    width:100%;
-    height:500px;
+    background:#eee;
+    position:absolute;left:0;right:0;top:0;bottom:0;
+    width:100%;overflow:hidden;
+
     & > ul{
        width:100%;
        overflow:hidden;
        & > li{
          list-style:none;
-         position:absolute;
-         left:0;top:0;
+         position:absolute;overflow:hidden;
+         left:0;top:0;width:100%;
 		 & img{
-			height:500px;
-			width:100%;
+
 	     }
        }
     }
