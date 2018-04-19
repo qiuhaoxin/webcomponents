@@ -1,4 +1,3 @@
-
 import React,{Component} from 'react';
 import Carouset from '../../src/components/carouset';
 import Tab from '../../src/components/tab';

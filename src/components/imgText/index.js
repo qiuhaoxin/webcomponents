@@ -8,8 +8,9 @@ class ImgText extends Component{
 		this.classNameStr="";
 		this.prefixcls="qhx-imgtext";
 		this.state={
-           dataArr:[]
-		}
+        dataArr:[],
+        showMask:false,
+		};
 	}
 	componentDidMount(){
         const {dataSource,className,showMask,layout}=this.props;
@@ -25,9 +26,9 @@ class ImgText extends Component{
 	handleClick=(e)=>{
 
 	}
-  handleMouseover=(e)=>{
-    console.log("mouseover");
-    const {mouseover}=this.props;
+  handleMouseover=(e,item)=>{
+    console.log("item is "+JSON.stringify(item));
+    const {mouseover,haveMasker}=this.props;
     let target=e.target;
     if(target.tagName!='LI'){
        target=target.parentNode;
@@ -35,12 +36,12 @@ class ImgText extends Component{
         target=target.parentNode;
        }
     }
-    if(mouseover)mouseover(target);
+    if(mouseover)mouseover(target,item);
 
   }
-  hanleMouseout=(e)=>{
-    const {mouseout}=this.props;
-    console.log("mouseout");
+  hanleMouseout=(e,item)=>{
+
+    const {mouseout,haveMasker}=this.props;
     let target=e.target;
     if(target.tagName!='LI'){
        target=target.parentNode;
@@ -48,7 +49,7 @@ class ImgText extends Component{
         target=target.parentNode;
        }
     }
-    if(mouseout)mouseout(target);
+    if(mouseout)mouseout(target,item);
   }
 	
 	render(){
@@ -60,7 +61,8 @@ class ImgText extends Component{
                {
                	   dataArr.map((item,index)=>{
                       return (
-                         <li key={`qhx-imgtext-${index}`} className={`${this.prefixcls}-${layout}`} onMouseEnter={this.handleMouseover} onMouseLeave={this.hanleMouseout}>
+                         <li key={`qhx-imgtext-${index}`} className={`${this.prefixcls}-${layout}`} 
+                         onMouseEnter={(e)=>this.handleMouseover(e,item)} onMouseLeave={(e)=>this.hanleMouseout(e,item)} style={{visibility:item.title==''?'hidden':'visible'}}>
                              <div className={`${this.prefixcls}-img`}>
                                  <img src={item.imgPath}/>
                              </div>
@@ -75,7 +77,7 @@ class ImgText extends Component{
                                  item.render?item.render():null
                              }
                              {
-                                 maskerRender?maskerRender():null
+                                 (maskerRender && item['showMasker'])?maskerRender(item):null
                              }
                          </li>
                       )

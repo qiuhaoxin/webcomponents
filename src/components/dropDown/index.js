@@ -22,7 +22,7 @@ class DropDown extends Component{
 
 	componentDidMount(){
         const {dataSource}=this.props;
-       document.addEventListener('click',this.handleDocumentClick,false);
+       window.addEventListener('click',this.handleDocumentClick,false);
 
 	}
 	componentWillMount(){
@@ -58,7 +58,7 @@ class DropDown extends Component{
   }
   componentWillUnmount(){
     this.mounted=false;
-    documnet.addEventListener('click',this.handleDocumentClick,false);
+    window.addEventListener('click',this.handleDocumentClick,false);
   }
   refCallBack(instance){
     this.instance=instance;
