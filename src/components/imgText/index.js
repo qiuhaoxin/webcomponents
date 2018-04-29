@@ -23,10 +23,8 @@ class ImgText extends Component{
         })
 
 	}
-	handleClick=(e)=>{
-
-	}
   handleMouseover=(e,item)=>{
+    e.preventDefault();
     console.log("item is "+JSON.stringify(item));
     const {mouseover,haveMasker}=this.props;
     let target=e.target;
@@ -40,7 +38,7 @@ class ImgText extends Component{
 
   }
   hanleMouseout=(e,item)=>{
-
+    e.preventDefault();
     const {mouseout,haveMasker}=this.props;
     let target=e.target;
     if(target.tagName!='LI'){
@@ -51,17 +49,22 @@ class ImgText extends Component{
     }
     if(mouseout)mouseout(target,item);
   }
-	
+	handleClick=(e,item)=>{
+     e.preventDefault();
+     const {imgTextClick}=this.props;
+     if(imgTextClick)imgTextClick(e,item);
+  }
 	render(){
+    //onClick={this.handleClick}
 		const {dataArr}=this.state;
     const {layout,haveMasker,maskerRender}=this.props
 		return (
-           <div className={this.classNameStr} onClick={this.handleClick}>
+           <div className={this.classNameStr}>
              <ul>
                {
                	   dataArr.map((item,index)=>{
                       return (
-                         <li key={`qhx-imgtext-${index}`} className={`${this.prefixcls}-${layout}`} 
+                         <li key={`qhx-imgtext-${index}`} className={`${this.prefixcls}-${layout}`}  onClick={(e)=>this.handleClick(e,item)}
                          onMouseEnter={(e)=>this.handleMouseover(e,item)} onMouseLeave={(e)=>this.hanleMouseout(e,item)} style={{visibility:item.title==''?'hidden':'visible'}}>
                              <div className={`${this.prefixcls}-img`}>
                                  <img src={item.imgPath}/>

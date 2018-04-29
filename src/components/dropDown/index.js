@@ -21,7 +21,7 @@ class DropDown extends Component{
 	}
 
 	componentDidMount(){
-        const {dataSource}=this.props;
+       const {dataSource}=this.props;
        window.addEventListener('click',this.handleDocumentClick,false);
 
 	}

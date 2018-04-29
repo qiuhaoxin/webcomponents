@@ -9,6 +9,15 @@ const fileloader={
    loader:'file-loader',
    options:{name:'static/[name].[ext]'}
 };
+const cssLoader=isLocal=>({
+  loader:'css-loader',
+  // options:{
+  //   modules:true,
+  //   '-autoprefixer':true,
+  //   importLoaders:true,
+  //   localIdentName:isLocal?'ril__[local]':null,
+  // }
+})
 
 let config={
    entry:'./src/index',
@@ -46,10 +55,15 @@ let config={
         },
         {
           test:/\.(less)/,
+          //use:['style-loader',cssLoader(true),'less-loader'],
+          exclude:path.join(__dirname,'node_modules'),
           loader:'style-loader!css-loader!less-loader',
         },{
          test:/\.css$/,
-         loader:'css-loader'
+         loader:'css-loader',
+         options:{
+            modules:true,
+         }
         }]
    }
 }

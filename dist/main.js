@@ -402,7 +402,7 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(20);
+        __webpack_require__(21);
         var MyComponent = function(_PureComponent) {
             function MyComponent(props) {
                 return _classCallCheck(this, MyComponent), _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this, props));
@@ -475,8 +475,8 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(32), _reactDom2 = _interopRequireDefault(_reactDom);
-        __webpack_require__(33);
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(33), _reactDom2 = _interopRequireDefault(_reactDom);
+        __webpack_require__(34);
         var _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), DropDown = (__webpack_require__(4), 
         function(_Component) {
             function DropDown(props) {
@@ -613,14 +613,14 @@
                 return _interopRequireDefault(_carouset).default;
             }
         });
-        var _tab = __webpack_require__(17);
+        var _tab = __webpack_require__(18);
         Object.defineProperty(exports, "Tab", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_tab).default;
             }
         });
-        var _imgText = __webpack_require__(22);
+        var _imgText = __webpack_require__(23);
         Object.defineProperty(exports, "ImgText", {
             enumerable: !0,
             get: function() {
@@ -634,14 +634,14 @@
                 return _interopRequireDefault(_line).default;
             }
         });
-        var _modal = __webpack_require__(25);
+        var _modal = __webpack_require__(26);
         Object.defineProperty(exports, "Modal", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_modal).default;
             }
         });
-        var _select = __webpack_require__(29);
+        var _select = __webpack_require__(30);
         Object.defineProperty(exports, "Select", {
             enumerable: !0,
             get: function() {
@@ -655,14 +655,14 @@
                 return _interopRequireDefault(_dropDown).default;
             }
         });
-        var _masker = __webpack_require__(35);
+        var _masker = __webpack_require__(36);
         Object.defineProperty(exports, "Masker", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_masker).default;
             }
         });
-        var _exchange = __webpack_require__(38);
+        var _exchange = __webpack_require__(39);
         Object.defineProperty(exports, "Exchange", {
             enumerable: !0,
             get: function() {
@@ -685,6 +685,13 @@
                 configurable: !0,
                 writable: !0
             }) : obj[key] = value, obj;
+        }
+        function _toConsumableArray(arr) {
+            if (Array.isArray(arr)) {
+                for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+                return arr2;
+            }
+            return Array.from(arr);
         }
         function _classCallCheck(instance, Constructor) {
             if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
@@ -725,10 +732,9 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(5);
-        _interopRequireDefault(_propTypes);
-        __webpack_require__(11);
-        var _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), _left_arrow = __webpack_require__(14), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(15), _right_arrow2 = _interopRequireDefault(_right_arrow), _util = __webpack_require__(16), Carouset = function(_Component) {
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(5), _propTypes2 = _interopRequireDefault(_propTypes), _index = __webpack_require__(11), _index2 = _interopRequireDefault(_index), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), _left_arrow = __webpack_require__(14), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(15), _right_arrow2 = _interopRequireDefault(_right_arrow), _util = __webpack_require__(16);
+        console.log("styles is " + JSON.stringify(_index2.default));
+        var ieVersion = (0, _util.getIEVersion)(), Carouset = function(_Component) {
             function Carouset(props) {
                 _classCallCheck(this, Carouset);
                 var _this2 = _possibleConstructorReturn(this, (Carouset.__proto__ || Object.getPrototypeOf(Carouset)).call(this, props));
@@ -738,7 +744,8 @@
                     offsetX: 0,
                     offsetY: 0,
                     loadErrorStatus: {},
-                    shouldAnimate: !1
+                    shouldAnimate: !1,
+                    transformX: 0
                 }, _this2;
             }
             return _inherits(Carouset, _Component), _createClass(Carouset, null, [ {
@@ -746,10 +753,12 @@
                 value: function(_ref) {
                     var _ref$x = _ref.x, x = void 0 === _ref$x ? 0 : _ref$x, _ref$y = _ref.y, y = void 0 === _ref$y ? 0 : _ref$y, width = _ref.width, targetWidth = _ref.targetWidth, nextX = x, windowWidth = (0, 
                     _util.getWindowWidth)();
-                    console.log("windowWidth is " + windowWidth), width > windowWidth && (nextX += (windowWidth - width) / 2), 
-                    console.log("targetWidth is " + targetWidth + " and width is " + width);
+                    // console.log("windowWidth is "+windowWidth);
+                    width > windowWidth && (nextX += (windowWidth - width) / 2);
+                    // console.log("targetWidth is "+targetWidth+" and width is "+width);
                     var scaleFactor = targetWidth / width * 1;
-                    return console.log("scaleFactor is " + scaleFactor), {
+                    //console.log("scaleFactor is "+scaleFactor);
+                    return {
                         transform: "translate3d(" + nextX + "px," + y + "px,0) scale3d(" + scaleFactor + "," + scaleFactor + ",1)"
                     };
                 }
@@ -819,7 +828,7 @@
                     _props2.animationDisabled, _props2.animationDuration), _state = this.state, slideDom = _state.slideDom, offsetX = _state.offsetX, offsetY = _state.offsetY, loadErrorStatus = _state.loadErrorStatus, images = [], boxSize = this.getCarousetRect(), transitionStyle = {};
                     //if(!animationDisabled && this.isAnimating()){
                     transitionStyle = _extends({}, transitionStyle, {
-                        transition: "transform " + animationDuration + "ms linear"
+                        transition: "transform " + animationDuration + "ms"
                     });
                     var keyEndings = {};
                     this.getSrcType().forEach(function(_ref2) {
@@ -835,42 +844,64 @@
                                     return object[key];
                                 });
                             }(loadErrorStatus)) return void images.push(_react2.default.createElement("div", {
-                                style: imageSrc
-                            }, "error"));
-                            if (null !== bestImageInfo) {
-                                var imageSrc = bestImageInfo.src;
-                                images.push(_react2.default.createElement("img", {
-                                    className: "" + imageClass,
-                                    style: imageStyle,
-                                    src: imageSrc,
-                                    key: imageSrc + keyEndings[srcType]
+                                style: imageSrc,
+                                className: imageClass + " ril-errored",
+                                key: _this4.props[srcType] + keyEndings[srcType]
+                            }, _react2.default.createElement("div", null, _this4.props.imageLoadErrorMessages)));
+                            if (null === bestImageInfo) {
+                                var loadingIcon = ieVersion < 10 ? _react2.default.createElement("div", {
+                                    className: _index2.default.loadingContainer__icon
+                                }, (0, _util.translate)("Loading...")) : _react2.default.createElement("div", {
+                                    className: "ril-loading-circle " + _index2.default.loadingCircle + " " + _index2.default.loadingContainer__icon
+                                }, [].concat(_toConsumableArray(new Array(12))).map(function(_, index) {
+                                    return _react2.default.createElement("div", {
+                                        key: index,
+                                        className: "ril-loading-circle-point " + _index2.default.loadingCirclePoint
+                                    });
                                 }));
+                                return void images.push(_react2.default.createElement("div", {
+                                    className: imageClass + " " + _index2.default.image + " ril-not-loaded",
+                                    style: imageStyle,
+                                    key: _this4.props[srcType] + keyEndings[srcType]
+                                }, _react2.default.createElement("div", {
+                                    className: _index2.default.loadingContainer
+                                }, loadingIcon)));
                             }
+                            var imageSrc = bestImageInfo.src;
+                            images.push(_react2.default.createElement("img", {
+                                className: imageClass + " " + _index2.default.image,
+                                src: imageSrc,
+                                key: imageSrc + keyEndings[srcType],
+                                style: imageStyle,
+                                alt: "string" == typeof imageTitle ? imageTitle : (0, _util.translate)("Image"),
+                                draggable: !1
+                            }));
                         }
                     };
-                    return addImage("nextSrc", "ril-image-next", {
+                    //console.log("image is "+JSON.stringify(images));
+                    return addImage("nextSrc", "ril-image-next ril-image", {
                         x: boxSize.width
-                    }), addImage("mainSrc", "ril-image-current", {
+                    }), addImage("mainSrc", "ril-image-current ril-image", {
                         x: -1 * offsetX,
                         y: -1 * offsetY
-                    }), addImage("preSrc", "ril-image-prev", {
+                    }), addImage("preSrc", "ril-image-prev ril-image", {
                         x: -1 * boxSize.width
-                    }), console.log("image is " + JSON.stringify(images)), _react2.default.createElement("div", {
-                        className: this.classNameStr,
+                    }), _react2.default.createElement("div", {
+                        className: _index2.default["qhx-carouset"],
                         ref: function(el) {
                             _this4.outerEl = el;
                         }
                     }, slideDom ? "" : this.renderDefaultArrow("0"), _react2.default.createElement("div", {
-                        className: "test"
+                        className: "ril-inner " + _index2.default.inner
                     }, images), slideDom ? "" : this.renderDefaultArrow("1"));
                 }
             } ]), Carouset;
         }(_react.Component), _initialiseProps = function() {
             var _this5 = this;
             this.handleArrowClick = function(event, dir) {
-                0 == dir ? _this5.requestMove("pre", event) : 1 == dir && _this5.requestMove("next", event);
+                console.log("dir is " + dir), 0 == dir ? _this5.requestMove("pre", event) : 1 == dir && _this5.requestMove("next", event);
             }, this.requestMove = function(direction, event) {
-                var nextState = {
+                var _this = _this5, nextState = {
                     offsetX: 0,
                     offsetY: 0
                 };
@@ -878,9 +909,11 @@
                     return _this5.setState({
                         shouldAnimate: !1
                     });
-                }, _this5.props.animationDuration)), _this5.moveRequested = !0, "pre" == direction ? (_this5.keyCounter -= 1, 
-                _this5.setState(nextState), _this5.props.onMovePreRequest(event)) : (_this5.keyCounter += 1, 
-                _this5.setState(nextState), _this5.props.onMoveNextRequest(event));
+                }, _this5.props.animationDuration)), _this5.setTimeout(function() {
+                    _this.moveRequested = !0, "pre" == direction ? (_this.keyCounter -= 1, _this.setState(nextState), 
+                    _this.props.onMovePreRequest(event)) : (_this.keyCounter += 1, _this.setState(nextState), 
+                    _this.props.onMoveNextRequest(event));
+                }, 300);
             }, this.handleImageLoaded = function() {
                 _this5.setState({
                     imageLoaded: !0
@@ -949,7 +982,8 @@
                     bottom: 0
                 };
             }, this.goToNext = function() {}, this.goToPre = function() {}, this.renderDefaultArrow = function(dir) {
-                var className = "carouset-arrow " + (0 == dir ? "carouset-arrow-left" : "carouset-arrow-right");
+                // const className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
+                var arrowClass = 0 == dir ? _index2.default["carouset-arrow-left"] : _index2.default["carouset-arrow-right"], className = _index2.default["carouset-arrow"] + " " + arrowClass;
                 return _react2.default.createElement("div", {
                     className: className,
                     onClick: function(e) {
@@ -957,7 +991,7 @@
                     }
                 }, _react2.default.createElement("img", {
                     src: 0 == dir ? _left_arrow2.default : _right_arrow2.default,
-                    className: 0 == dir ? "carouset-arrow-left" : "carouset-arrow-right"
+                    className: 0 == dir ? _index2.default["carouset-arrow-left"] : _index2.default["carouset-arrow-right"]
                 }));
             }, this.isAnimating = function() {
                 return _this5.state.shouldAnimate;
@@ -974,11 +1008,14 @@
                 }));
             };
         };
-        Carouset.defaultProps = {
+        Carouset.propsType = {
+            imageLoadErrorMessages: _propTypes2.default.node
+        }, Carouset.defaultProps = {
             onImageLoad: function() {},
             imagePadding: 0,
             animationDisabled: !1,
-            animationDuration: 300
+            animationDuration: 300,
+            imageLoadErrorMessages: "this image failed to load"
         }, exports.default = Carouset;
     }, /* 11 */
     /***/
@@ -996,7 +1033,7 @@
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
-        exports.push([ module.i, ".test {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.test img {\n  position: absolute;\n  right: 0;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset {\n  background: #eee;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul > li {\n  list-style: none;\n  position: absolute;\n  overflow: hidden;\n  left: 0;\n  top: 0;\n  width: 100%;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  width: 19px;\n  height: 36px;\n  top: 50%;\n  margin-top: -18px;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n", "" ]);
+        exports.push([ module.i, ".test {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.test img {\n  position: absolute;\n  right: 0;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset {\n  background: #eee;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul > li {\n  list-style: none;\n  position: absolute;\n  overflow: hidden;\n  left: 0;\n  top: 0;\n  width: 100%;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  width: 19px;\n  height: 36px;\n  top: 50%;\n  margin-top: -18px;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n.inner {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.image {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  max-width: none;\n  -ms-content-zooming: none;\n  -ms-user-select: none;\n  -ms-touch-select: none;\n  touch-action: none;\n}\n", "" ]);
     }, /* 13 */
     /***/
     function(module, exports) {
@@ -1049,16 +1086,53 @@
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
-        function getWindowWidth() {
-            return "undefined" != typeof window ? window.innerWidth : 0;
-        }
-        function getWindowHeight() {
-            return "undefined" != typeof window ? window.innerHeight : 0;
-        }
-        Object.defineProperty(exports, "__esModule", {
-            value: !0
-        }), exports.getWindowWidth = getWindowWidth, exports.getWindowHeight = getWindowHeight;
+        /* WEBPACK VAR INJECTION */
+        (function(global) {
+            function getWindowWidth() {
+                return "undefined" != typeof window ? window.innerWidth : 0;
+            }
+            function getWindowHeight() {
+                return "undefined" != typeof window ? window.innerHeight : 0;
+            }
+            function getIEVersion() {
+                if (void 0 !== global.window && void 0 !== global.window.navigator) {
+                    var match = global.window.navigator.userAgent.match(/(?:MSIE|Trident\/.*;rv:)(\d+)/);
+                    return match ? parseInt(match[1], 10) : void 0;
+                }
+            }
+            function translate(str) {
+                var replaceString = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null;
+                if (!str) return "";
+                var translated = str;
+                return replaceString && Object.keys(replaceString).forEach(function(placeholder) {
+                    translated = translated.replace(placeholder, replaceString[placeholder]);
+                }), translated;
+            }
+            Object.defineProperty(exports, "__esModule", {
+                value: !0
+            }), exports.getWindowWidth = getWindowWidth, exports.getWindowHeight = getWindowHeight, 
+            exports.getIEVersion = getIEVersion, exports.translate = translate;
+        }).call(exports, __webpack_require__(17));
     }, /* 17 */
+    /***/
+    function(module, exports) {
+        var g;
+        // This works in non-strict mode
+        g = function() {
+            return this;
+        }();
+        try {
+            // This works if eval is allowed (see CSP)
+            g = g || Function("return this")() || (0, eval)("this");
+        } catch (e) {
+            // This works if the window reference is available
+            "object" == typeof window && (g = window);
+        }
+        // g can still be undefined, but nothing to do about it...
+        // We return undefined, instead of nothing here, so it's
+        // easier to handle this case. if(!global) { ...}
+        module.exports = g;
+    }, /* 18 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1101,7 +1175,7 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react);
-        __webpack_require__(18);
+        __webpack_require__(19);
         var _line = __webpack_require__(6), _line2 = _interopRequireDefault(_line), _classnames = __webpack_require__(3), Tab = (_interopRequireDefault(_classnames), 
         function(_Component) {
             function Tab(props) {
@@ -1172,10 +1246,10 @@
             } ]), Tab;
         }(_react.Component));
         exports.default = Tab;
-    }, /* 18 */
+    }, /* 19 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(19);
+        var content = __webpack_require__(20);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1183,16 +1257,16 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 19 */
+    }, /* 20 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".tab-wrapper {\n  display: flex;\n  flex-direction: column;\n}\n.tab-wrapper > ul {\n  display: inline-flex;\n  padding: 0;\n  font-size: 20px;\n  cursor: pointer;\n  color: #4f5255;\n}\n.tab-wrapper > ul > li {\n  display: inline-flex;\n  list-style: none;\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 15px;\n  height: 40px;\n  min-width: 100px;\n}\n.tab-wrapper > ul > li:hover {\n  color: #2d8cf0;\n}\n.tab-wrapper > ul > li.active {\n  color: #2d8cf0;\n}\n.tab-wrapper .wise-line {\n  -webkit-transition: transform 200ms;\n  transition: transform 200ms;\n}\n", "" ]);
-    }, /* 20 */
+    }, /* 21 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(21);
+        var content = __webpack_require__(22);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1200,13 +1274,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 21 */
+    }, /* 22 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".wise-line {\n  border: 1px solid #eee;\n  margin: 0 10px;\n  background: #eee;\n}\n", "" ]);
-    }, /* 22 */
+    }, /* 23 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1249,22 +1323,27 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(23);
+        __webpack_require__(24);
         var ImgText = function(_Component) {
             function ImgText(props) {
                 _classCallCheck(this, ImgText);
                 var _this = _possibleConstructorReturn(this, (ImgText.__proto__ || Object.getPrototypeOf(ImgText)).call(this, props));
-                return _this.handleClick = function(e) {}, _this.handleMouseover = function(e, item) {
-                    console.log("item is " + JSON.stringify(item));
+                return _this.handleMouseover = function(e, item) {
+                    e.preventDefault(), console.log("item is " + JSON.stringify(item));
                     var _this$props = _this.props, mouseover = _this$props.mouseover, target = (_this$props.haveMasker, 
                     e.target);
                     "LI" != target.tagName && (target = target.parentNode, "LI" != target.tagName && (target = target.parentNode)), 
                     mouseover && mouseover(target, item);
                 }, _this.hanleMouseout = function(e, item) {
+                    e.preventDefault();
                     var _this$props2 = _this.props, mouseout = _this$props2.mouseout, target = (_this$props2.haveMasker, 
                     e.target);
                     "LI" != target.tagName && (target = target.parentNode, "LI" != target.tagName && (target = target.parentNode)), 
                     mouseout && mouseout(target, item);
+                }, _this.handleClick = function(e, item) {
+                    e.preventDefault();
+                    var imgTextClick = _this.props.imgTextClick;
+                    imgTextClick && imgTextClick(e, item);
                 }, _this.classNameStr = "", _this.prefixcls = "qhx-imgtext", _this.state = {
                     dataArr: [],
                     showMask: !1
@@ -1286,12 +1365,14 @@
                     var _this2 = this, dataArr = this.state.dataArr, _props2 = this.props, layout = _props2.layout, maskerRender = (_props2.haveMasker, 
                     _props2.maskerRender);
                     return _react2.default.createElement("div", {
-                        className: this.classNameStr,
-                        onClick: this.handleClick
+                        className: this.classNameStr
                     }, _react2.default.createElement("ul", null, dataArr.map(function(item, index) {
                         return _react2.default.createElement("li", {
                             key: "qhx-imgtext-" + index,
                             className: _this2.prefixcls + "-" + layout,
+                            onClick: function(e) {
+                                return _this2.handleClick(e, item);
+                            },
                             onMouseEnter: function(e) {
                                 return _this2.handleMouseover(e, item);
                             },
@@ -1317,10 +1398,10 @@
             } ]), ImgText;
         }(_react.Component);
         exports.default = ImgText;
-    }, /* 23 */
+    }, /* 24 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(24);
+        var content = __webpack_require__(25);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1328,13 +1409,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 24 */
+    }, /* 25 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-imgtext {\n  display: flex;\n  width: 100%;\n}\n.qhx-imgtext > ul {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n}\n.qhx-imgtext > ul > li {\n  flex-grow: 1;\n  border: 1px solid #eee;\n  position: relative;\n}\n.qhx-imgtext-column {\n  flex-direction: column;\n  display: flex;\n}\n.qhx-imgtext-row {\n  flex-direction: row;\n  display: flex;\n}\n.qhx-imgtext-text {\n  display: flex;\n  flex-direction: column;\n}\n", "" ]);
-    }, /* 25 */
+    }, /* 26 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1377,8 +1458,8 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(26);
-        var _propTypes = __webpack_require__(5), _propTypes2 = _interopRequireDefault(_propTypes), _addEventListener = __webpack_require__(28), _addEventListener2 = _interopRequireDefault(_addEventListener), mousePosition = {
+        __webpack_require__(27);
+        var _propTypes = __webpack_require__(5), _propTypes2 = _interopRequireDefault(_propTypes), _addEventListener = __webpack_require__(29), _addEventListener2 = _interopRequireDefault(_addEventListener), mousePosition = {
             x: 0,
             y: 0
         }, Modal = function(_Component) {
@@ -1453,10 +1534,10 @@
         Modal.propTypes = {
             title: _propTypes2.default.string
         }, exports.default = Modal;
-    }, /* 26 */
+    }, /* 27 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(27);
+        var content = __webpack_require__(28);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1464,17 +1545,17 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 27 */
+    }, /* 28 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-modal {\n  position: absolute;\n  z-index: 100;\n  width: 880px;\n  border: 1px solid #eee;\n  border-radius: 8px;\n  left: 50%;\n  margin-left: -440px;\n  top: 10%;\n}\n.qhx-modal.qhx-modal-hide {\n  transform: scale(0);\n  transform-origin: 0 100%;\n  transition: transform 0.3s ease-in;\n}\n.qhx-modal.qhx-modal-show {\n  transform: scale(100%);\n  transform-origin: 0 100%;\n  transition: transform 0.3s ease-in;\n}\n.qhx-modal-title {\n  display: inline-flex;\n  justify-content: flex-start;\n  height: 40px;\n  align-items: center;\n  position: relative;\n  width: 100%;\n}\n.qhx-modal-title span {\n  padding-left: 30px;\n}\n.qhx-modal-title:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  width: 100%;\n  bottom: 0;\n  border-top: 1px solid #eee;\n}\n.qhx-modal-body {\n  min-height: 100px;\n  padding-bottom: 40px;\n}\n.qhx-modal-footer {\n  height: 50px;\n  width: 100%;\n  display: inline-flex;\n  justify-content: flex-end;\n  border-top: 1px solid #eee;\n  align-items: center;\n  cursor: pointer;\n}\n.qhx-modal-footer div {\n  padding-right: 30px;\n}\n.qhx-modal-footer span {\n  padding: 5px 15px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.qhx-modal-footer .qhx-modal-ok {\n  background: #1890ff;\n  color: #fff;\n}\n.qhx-modal-footer .qhx-modal-cancel {\n  border: 1px solid #eee;\n  margin-right: 20px;\n}\n", "" ]);
-    }, /* 28 */
+    }, /* 29 */
     /***/
     function(module, exports) {
         module.exports = require("rc-util/lib/Dom/addEventListener");
-    }, /* 29 */
+    }, /* 30 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1518,7 +1599,7 @@
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3);
         _interopRequireDefault(_classnames);
-        __webpack_require__(30);
+        __webpack_require__(31);
         var _dropDown = __webpack_require__(7), _dropDown2 = _interopRequireDefault(_dropDown), _immutable = __webpack_require__(4), Select = function(_Component) {
             function Select(props) {
                 _classCallCheck(this, Select);
@@ -1584,10 +1665,10 @@
             } ]), Select;
         }(_react.Component);
         exports.default = Select;
-    }, /* 30 */
+    }, /* 31 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(31);
+        var content = __webpack_require__(32);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1595,20 +1676,20 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 31 */
+    }, /* 32 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-select {\n  width: 180px;\n  position: relative;\n}\n.qhx-select-input {\n  border: 1px solid #eee;\n  border-radius: 6px;\n  width: 100%;\n  padding: 5px 0;\n  display: inline-flex;\n  cursor: pointer;\n}\n.qhx-select-input .qhx-select-content {\n  flex-grow: 2;\n  padding-left: 4px;\n}\n.qhx-select-input .qhx-select-icon {\n  position: relative;\n}\n.qhx-select-input .qhx-select-icon:before {\n  content: '';\n  position: absolute;\n  right: 7px;\n  border-top: 6px solid #555;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  top: 50%;\n  margin-top: -3px;\n}\n", "" ]);
-    }, /* 32 */
+    }, /* 33 */
     /***/
     function(module, exports) {
         module.exports = require("react-dom");
-    }, /* 33 */
+    }, /* 34 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(34);
+        var content = __webpack_require__(35);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1616,13 +1697,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 34 */
+    }, /* 35 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-dropdown {\n  position: absolute;\n  left: 0px;\n  top: 33px;\n  overflow-y: scroll;\n  right: 0;\n  z-index: 99;\n  border-bottom-left-radius: 6px;\n  border-bottom-right-radius: 6px;\n  border-bottom: 1px solid #eee;\n}\n.qhx-dropdown-hide {\n  height: 0px;\n  transition: all 0.2s ease-in;\n}\n.qhx-dropdown-show {\n  transition: all 0.2s ease-in;\n}\n.qhx-dropdown > ul {\n  background: #fff;\n  width: 100%;\n  cursor: pointer;\n}\n.qhx-dropdown > ul > li {\n  padding: 0px 10px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  position: relative;\n  border: 1px solid #eee;\n  border-bottom: none;\n  border-top: none;\n}\n.qhx-dropdown > ul > li:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.qhx-dropdown > ul > li:hover {\n  background: #e6f7ff;\n}\n", "" ]);
-    }, /* 35 */
+    }, /* 36 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1665,7 +1746,7 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(36);
+        __webpack_require__(37);
         var Masker = function(_Component) {
             function Masker(props) {
                 _classCallCheck(this, Masker);
@@ -1708,10 +1789,10 @@
             } ]), Masker;
         }(_react.Component);
         exports.default = Masker;
-    }, /* 36 */
+    }, /* 37 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(37);
+        var content = __webpack_require__(38);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1719,13 +1800,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 37 */
+    }, /* 38 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-masker {\n  position: absolute;\n  left: 0;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.2);\n}\n.qhx-masker-show {\n  transform-origin: 50% 50%;\n  transform: scale(100%);\n  transition: transform .2s linear;\n}\n.qhx-masker-hide {\n  transform-origin: 50% 50%;\n  transform: scale(0);\n  transition: transform .2s linear;\n}\n", "" ]);
-    }, /* 38 */
+    }, /* 39 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1769,7 +1850,7 @@
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react);
         __webpack_require__(4);
-        __webpack_require__(39);
+        __webpack_require__(40);
         var _classnames = __webpack_require__(3), Exchange = (_interopRequireDefault(_classnames), 
         function(_Component) {
             function Exchange(props) {
@@ -1836,10 +1917,10 @@
             } ]), Exchange;
         }(_react.Component));
         exports.default = Exchange;
-    }, /* 39 */
+    }, /* 40 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(40);
+        var content = __webpack_require__(41);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1847,7 +1928,7 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 40 */
+    }, /* 41 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports

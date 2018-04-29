@@ -1,6 +1,6 @@
 {
   "name": "wise_webcomponents",
-  "version": "1.8.8",
+  "version": "2.1.0",
   "description": "react components for PC web",
   "main": "dist/main.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-html5video": "^2.5.1",
     "webpack": "^3.11.0"
   },
   "devDependencies": {
