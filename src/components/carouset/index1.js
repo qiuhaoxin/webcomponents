@@ -1,33 +1,36 @@
+
+
+/*
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
-import './index.less';
+import styles from './index.less';
 import classNames from 'classnames';
 import leftArrow from '../../images/left_arrow.png';
 import rightArrow from '../../images/right_arrow.png';
-import {getWindowWidth,getWindowHeight} from '../../utils/util';
-
+import {getWindowWidth,getWindowHeight,translate,getIEVersion} from '../../utils/util';
+console.log("styles is "+JSON.stringify(styles));
+const ieVersion=getIEVersion();
 class Carouset extends Component{
-  static getTransform({x=0,y=0,width,targetWidth,transformX}){
+  static getTransform({x=0,y=0,width,targetWidth}){
     let nextX=x;
-    nextX+=transformX;
-    // const windowWidth=getWindowWidth();
-    // console.log("windowWidth is "+windowWidth);
-    // if(width > windowWidth){
-    //   nextX += (windowWidth - width) / 2;
-    // }
-    //console.log("targetWidth is "+targetWidth+" and width is "+width);
-   // const scaleFactor=1 * (targetWidth / width);
+    const windowWidth=getWindowWidth();
+   // console.log("windowWidth is "+windowWidth);
+    if(width > windowWidth){
+      nextX += (windowWidth - width) / 2;
+    }
+   // console.log("targetWidth is "+targetWidth+" and width is "+width);
+
+    const scaleFactor=1 * (targetWidth / width);
     //console.log("scaleFactor is "+scaleFactor);
-    //scale3d(${scaleFactor},${scaleFactor},1)
     return {
-      transform:`translate3d(${nextX}px,${y}px,0)`
+      transform:`translate3d(${nextX}px,${y}px,0) scale3d(${scaleFactor},${scaleFactor},1)`
     }
 
   }
-	constructor(props){
-		super(props);
-		this.prefixCls="qhx-carouset";
-		this.classNameStr="";
+  constructor(props){
+    super(props);
+    this.prefixCls="qhx-carouset";
+    this.classNameStr="";
     this.state={
        imageLoaded:false,
        offsetX:0,
@@ -36,7 +39,7 @@ class Carouset extends Component{
        shouldAnimate:false,
        transformX:0
     }
-	}
+  }
   componentWillMount(){
        this.classNameStr=classNames([
           `${this.prefixCls}-wrapper`
@@ -71,12 +74,13 @@ class Carouset extends Component{
     return true;
   }
 
-	componentDidMount(){
+  componentDidMount(){
        const {dataSource,classNameStr,currentImg}=this.props;
       // this.preloadImage(currentImg,this.handleImageLoaded);
       this.loadAllImages();
-	}
+  }
   handleArrowClick=(event,dir)=>{
+     console.log("dir is "+dir);
      if(dir==0){
         this.requestMove('pre',event)
      }else if(dir==1){
@@ -94,9 +98,6 @@ class Carouset extends Component{
         this.setTimeout(()=>this.setState({shouldAnimate:false}),
         this.props.animationDuration);
       }
-      this.setState({
-        transformX:-1024
-      })
 
       this.setTimeout(()=>{
         _this.moveRequested=true;
@@ -268,10 +269,12 @@ class Carouset extends Component{
   }
   //渲染左右滑动的箭头
   renderDefaultArrow=(dir)=>{
-      const className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right')
+     // const className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
+      const arrowClass=(dir==0?styles['carouset-arrow-left']:styles['carouset-arrow-right']);
+      const className=`${styles['carouset-arrow']} ${arrowClass}`
       return (
         <div className={className}  onClick={(e)=>this.handleArrowClick(e,dir)}>
-           <img src={dir==0?leftArrow:rightArrow} className={dir==0?'carouset-arrow-left':'carouset-arrow-right'}/>
+           <img src={dir==0?leftArrow:rightArrow} className={dir==0?styles['carouset-arrow-left']:styles['carouset-arrow-right']}/>
         </div>
       )
   }
@@ -295,9 +298,9 @@ class Carouset extends Component{
        </div>
     )
   }
-	render(){
+  render(){
     const {dataSource,animationDisabled,animationDuration}=this.props;
-		const {slideDom,offsetX,offsetY,loadErrorStatus}=this.state;
+    const {slideDom,offsetX,offsetY,loadErrorStatus}=this.state;
     const images=[];
 
     const boxSize=this.getCarousetRect();
@@ -306,7 +309,7 @@ class Carouset extends Component{
     //if(!animationDisabled && this.isAnimating()){
       transitionStyle={
         ...transitionStyle,
-        transition:`transform ${animationDuration}ms linear`,
+        transition:`transform ${animationDuration}ms`,
       }
     //}
     let keyEndings={};
@@ -325,7 +328,6 @@ class Carouset extends Component{
           ...Carouset.getTransform({
             ...transform,
             ...bestImageInfo,
-            transformX:this.state.transformX,
           }),
        };
        const hasTrueValue=(object) =>{
@@ -334,23 +336,57 @@ class Carouset extends Component{
 
        if(bestImageInfo===null && hasTrueValue(loadErrorStatus)){
           images.push(
-             <div style={imageSrc}>
-                error
+             <div style={imageSrc} className={`${imageClass} ril-errored`} key={this.props[srcType]+keyEndings[srcType]}>
+                <div>
+                  {this.props.imageLoadErrorMessages}
+                </div>
              </div>
           )
           return;
        }else if(bestImageInfo===null){
+          const loadingIcon=
+          ieVersion < 10 ? (
+              <div className={styles.loadingContainer__icon}>
+                  {translate('Loading...')}
+              </div>
+          ) : (
+             <div
+               className={`ril-loading-circle ${styles.loadingCircle} ${styles.loadingContainer__icon}`}
+             >
+               {
+                [...new Array(12)].map((_,index)=>(
+                   <div key={index} className={`ril-loading-circle-point ${styles.loadingCirclePoint}`}>
 
+                   </div>
+                ))
+               }
+             </div>
+          );
+          images.push(
+           <div
+              className={`${imageClass} ${styles.image} ril-not-loaded`}
+              style={imageStyle}
+              key={this.props[srcType] + keyEndings[srcType]}
+            >
+              <div className={styles.loadingContainer}>{loadingIcon}</div>
+          </div>
+          )
           return;
        }
        const imageSrc=bestImageInfo.src;
        images.push(
-          <li style={imageStyle} key={imageSrc+keyEndings[srcType]}>
             <img 
-               className={`${imageClass}`}
+               className={`${imageClass} ${styles.image}`}
                src={imageSrc}
+               key={imageSrc + keyEndings[srcType]}
+               style={imageStyle}
+               alt={
+                  typeof imageTitle==='string' ? imageTitle : translate('Image')
+
+               }
+               draggable={false}
             />
-        </li>
+
        )
     }
     addImage('nextSrc','ril-image-next ril-image',{
@@ -363,46 +399,31 @@ class Carouset extends Component{
     addImage('preSrc','ril-image-prev ril-image',{
       x:-1 * boxSize.width
     })
-    console.log("image is "+JSON.stringify(images));
-		return (
-          <div className={this.classNameStr} ref={el=>{this.outerEl=el}}>
+    //console.log("image is "+JSON.stringify(images));
+    return (
+          <div  className={styles['qhx-carouset']} ref={el=>{this.outerEl=el}}>
               {
                 slideDom ? '' : this.renderDefaultArrow('0')
               }
-              <ul>
+              <div className={`ril-inner ${styles.inner}`}>
                  {images}
-              </ul>
+              </div>
               {
                 slideDom ? '' : this.renderDefaultArrow('1')
               }
           </div>
-		)
-	}
+    )
+  }
+}
+Carouset.propsType={
+  imageLoadErrorMessages:PropTypes.node,
 }
 Carouset.defaultProps={
   onImageLoad:()=>{},
   imagePadding:0,
   animationDisabled: false,
   animationDuration: 300,
+  imageLoadErrorMessages:"this image failed to load",
 }
 export default Carouset;
-
-/*
-              <div className="test">
-                 {images}
-              </div>
-*              {
-                slideDom ? '' : this.renderDefaultArrow('0')
-              }
-              <ul>
-                 {
-                    dataSource.map((item,index)=><li key={`carouset-${index}`}><img src={item.src}/></li>)
-                  }
-              </ul>
-              {
-                slideDom ? '' : this.renderDefaultArrow('1')
-              }
-              {
-                this.renderIndirators()
-              }
 */
