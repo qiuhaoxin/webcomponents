@@ -25,7 +25,6 @@ class ImgText extends Component{
 	}
   handleMouseover=(e,item)=>{
     e.preventDefault();
-    console.log("item is "+JSON.stringify(item));
     const {mouseover,haveMasker}=this.props;
     let target=e.target;
     if(target.tagName!='LI'){

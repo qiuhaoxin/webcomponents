@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
+import {findDOMNode} from 'react-dom';
 import PropTypes from 'prop-types';
 import './index.less';
 import classNames from 'classnames';
 import leftArrow from '../../images/left_arrow.png';
 import rightArrow from '../../images/right_arrow.png';
 import {getWindowWidth,getWindowHeight} from '../../utils/util';
+import {fromJS,is} from 'immutable';
 
 export default class Carouset extends Component{
      constructor(props){
@@ -13,12 +15,12 @@ export default class Carouset extends Component{
 
      }
      state={
-       slideDom:false
+       slideDom:false,
+       curIndex:0,
      }
      static getTransform(x=0,y=0,width,targetWidth,){
         let nextX=x;
         const windowWidth=getWindowWidth();
-        console.log("windowWidth is "+windowWidth);
         if(width > windowWidth){
           nextX += (windowWidth - width) / 2;
         }
@@ -37,49 +39,101 @@ export default class Carouset extends Component{
 
      }
      shouldComponentUpdate(nextProps,nextState){
-          return true;
+          return !is(fromJS(nextProps),fromJS(this.props)) || !is(fromJS(nextState),fromJS(this.state));
      }
      componentWillMount(){
         const {dataSource}=this.props;
-       // this.loadAllImages();
      }
      componentDidMount(){
+        const _this=this;
+        const {mainIndex}=this.props;
+        this.setState({
+          curIndex:mainIndex,
+        })
         this.loadAllImages();
+        window.addEventListener('resize',this.handleResize,false)
      }
-       
+     handleResize=(e)=>{
+        console.log("sdfsdfsdf");
+        if(this.imgCache){
+            const imgSrc=Object.keys(this.imgCache)[0];
+            const info=this.getBestImageForType(imgSrc);
+            if(info.targetHeight>0){
+              this.props.imgLoadSuccess(Math.round(info.targetHeight),Math.round(info.targetWidth))
+            }
+        }
+        this.forceUpdate();
+     }
+
+     componentWillReceiveProps(nextProps){
+        if(nextProps.mainIndex!=this.props.mainIndex){
+          this.setState({
+            curIndex:nextProps.mainIndex,
+          })
+        }
+     }
+
+     setArrowRef=(el,dir)=>{
+        dir==0?(this.leftArrow=el):(this.rightArrow=el)
+     }
      //渲染左右滑动的箭头  1:左滑（右侧按钮） 0：右滑（左侧按钮）
     renderDefaultArrow=(dir)=>{
-          const className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right')
+          const {dataSource}=this.props;
+          const {curIndex}=this.state;
+          let className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
+          if(dir==0 && curIndex==0){
+            className+=" arrow-left-disable";
+          }else if(dir==0){
+            className+=" arrow-enable";
+          }
+          if(dir==1 && curIndex==(dataSource.length - 1)){
+              className+=" arrow-right-disable";
+          }else if(dir==1){
+            className+=" arrow-enable";
+          }
           return (
-            <div className={className}  onClick={(e)=>this.handleArrowClick(e,dir)}>
-
-               <img src={dir==0?leftArrow:rightArrow} className={dir==0?'carouset-arrow-left':'carouset-arrow-right'}/>
+            <div className={className}  onClick={(e)=>this.handleArrowClick(e,dir)} ref={(el)=>this.setArrowRef(el,dir)} >
+                <img src={dir==0?leftArrow:rightArrow} className={dir==0?'carouset-arrow-left':'carouset-arrow-right'}/>
             </div>
           )
     }
     handleArrowClick=(e,dir)=>{
-        const {mainIndex,dataSource,requestNext}=this.props;
+        const {dataSource,requestNext}=this.props;
+        const {curIndex}=this.state;
         switch(dir){
           case "0":
-             if(mainIndex==0){
+             if(curIndex==0){
               return;
              }
              this.requestLeft();
           break;
           case "1":
-             if(mainIndex==dataSource.length - 1){
+             if(curIndex==dataSource.length - 1){
               return;
              }
              this.requestRight();
           break;
         }
     }
+    setArrowDisable=(dir)=>{
+
+        const {dataSource}=this.props;
+        const {curIndex}=this.state;
+        if(dir==0 && curIndex==0){
+          this.leftArrow.classList.remove('arrow-enable');
+          this.leftArrow.classList.add('arrow-left-disable');
+        }else if(dir==1 && curIndex==(dataSource.length - 1)){
+          this.rightArrow.classList.remove('arrow-enable');
+          this.rightArrow.classList.add('arrow-right-disable');
+        }
+    }
     requestRight=()=>{
-        const {mainIndex,dataSource,requestNext}=this.props;
+        const {curIndex}=this.state;
+        const {dataSource,requestNext}=this.props;
         if(requestNext)requestNext();
     }
     requestLeft=()=>{
-        const {requestPre,mainIndex,dataSource}=this.props;
+        const {requestPre,dataSource}=this.props;
         if(requestPre)requestPre();
     }
 
@@ -109,11 +163,10 @@ export default class Carouset extends Component{
                 height:inmemory.height,
              };
               const info=_this.getBestImageForType(imgSrc);
-            console.log("info is "+info.targetHeight);
             if(info.targetHeight>0){
-                 _this.props.imgLoadSuccess(Math.round(info.targetHeight))
+                 _this.props.imgLoadSuccess(Math.round(info.targetHeight),Math.round(info.targetWidth))
             }
-           // 
+           
             if(done){
                done();
              }
@@ -124,7 +177,6 @@ export default class Carouset extends Component{
         return imgSrc && this.imgCache[imgSrc] && this.imgCache[imgSrc].loaded;
      }
     getBestImageForType=(imgSrc)=>{
-      console.log("imgSrc is "+imgSrc);
        let fitSize={};
        const result=this.isImageLoaded(imgSrc);
        let width,height;
@@ -163,10 +215,12 @@ export default class Carouset extends Component{
     }
     getFitSize=(width,height,stretch)=>{
         const boxSize=this.getCarousetRect();
-       // console.log("getFitSize boxSize is "+JSON.stringify(boxSize));
+        console.log("boxSize is "+JSON.stringify(boxSize));
         let maxHeight=boxSize.height - this.props.padding * 2;
         let maxWidth=boxSize.width - this.props.padding * 2;
-       // console.log("getFitSize maxHeight is "+maxHeight+" and maxWidth is "+maxWidth);
+        if(maxWidth>1030){
+          console.log("maxWidth is "+maxWidth);
+        }
         if(!stretch){
           maxHeight=Math.min(maxHeight,height);
           maxWidth=Math.min(maxWidth,width);
@@ -184,13 +238,11 @@ export default class Carouset extends Component{
           height:height * maxWidth / width
         }
     }
-
-
-     
+    
      render(){
-        const {dataSource,mainIndex}=this.props;
+        const {dataSource}=this.props;
+        const {curIndex}=this.state;
         const {slideDom}=this.state;
-        console.log("dataSource is "+JSON.stringify(dataSource)+" and mainIndex is "+mainIndex);
         return (
            <div className="qhx-carouset" ref={(el)=>{this.outerEl=el;}}>
               {
@@ -202,11 +254,12 @@ export default class Carouset extends Component{
                     const imgStyle={};
                     const BestImageInfo=this.getBestImageForType(item.imgPath);
                     if(BestImageInfo){
+                      console.log("targetWidth  is "+BestImageInfo.targetWidth);
                       imgStyle['width']=BestImageInfo.targetWidth;
                       imgStyle['height']=Math.round(BestImageInfo.targetHeight);
                     }
-                    const offsetX=Carouset.getTranslateStyle(item.id - mainIndex);
-                    return <li style={offsetX} key={item.id}><img style={imgStyle}  src={item.imgPath}/></li>
+                    const offsetX=Carouset.getTranslateStyle(item.id - curIndex);
+                    return <li style={offsetX} key={item.id}><img draggable={false} style={imgStyle}  src={item.imgPath}/></li>
                   })
               }
               </ul>

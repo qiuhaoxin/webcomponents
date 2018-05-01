@@ -14,24 +14,32 @@
     & > ul{
        width:100%;
        overflow:hidden;
-       & > li{
+      & > li{
          list-style:none;
          position:absolute;overflow:hidden;
          left:0;top:0;width:100%;
-		 & img{
-
-	     }
-       }
+		     & img{
+          -webkit-use-select:none;
+          use-select:none;
+	       }
+      }
     }
 
 }
 .carouset-arrow{
 	position:absolute;
-	z-index:100;
-	width:19px;
-	height:36px;
-    top:50%;
-    margin-top:-18px;
+	z-index:100; background:rgba(0,0,0,0);
+  top:50%;padding:16px 16px;
+  margin-top:-18px;
+
+  &.arrow-enable:hover{
+     cursor:pointer;
+     background:rgba(0,0,0,.2);
+  }
+  &.arrow-left-disable,
+  &.arrow-right-disable{
+     cursor:pointer;
+  }
 	&-left{
       left:20px;
 

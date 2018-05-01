@@ -17,8 +17,6 @@ class Select extends Component{
    }
    componentWillMount(){
       const {value,defaultValue}=this.props;
-      console.log("value is "+value+" and defaultValue is "
-        +defaultValue);
       this.setState({
         value,defaultValue
       })
@@ -30,10 +28,9 @@ class Select extends Component{
 
    }
    shouldComponentUpdate(nextProps,nextState){
-      return !is(fromJS(nextProps),fromJS(this.props)) || !is(fromJS(nextState),fromJS(this.state));
+      return !is(fromJS(nextProps),fromJS(this.props)) || !is(fromJS(nextState),fromJS(this.state)) || nextState.dropDownVisible;
    }
    handleClick=(e)=>{
-      console.log("dropDownVisible is "+this.state.dropDownVisible);
       this.setState({
          dropDownVisible:true
       })
@@ -47,14 +44,13 @@ class Select extends Component{
    }
    render(){
      const {dataSource,value,defaultValue}=this.props;
-     console.log("render value is "+value+" and defaultValue is "+defaultValue)
      const {dropDownVisible}=this.state;
    	 return (
-        <div className="qhx-select">
+        <div className="qhx-select" ref={el=>this.selectEl=el}>
            <div className="qhx-select-input" onClick={this.handleClick}>
                <div className="qhx-select-content">{value || defaultValue}</div><div className="qhx-select-icon"></div>
            </div>
-           <DropDown dataSource={dataSource} visible={dropDownVisible} itemClick={this.handleSelectItem}></DropDown>
+           <DropDown dataSource={dataSource} visible={dropDownVisible} itemClick={this.handleSelectItem} selectDom={this.selectEl}></DropDown>
         </div>
    	 )
    }

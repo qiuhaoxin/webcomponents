@@ -16,6 +16,7 @@ class DropDown extends Component{
     this.count=0;
     this.state={
           classname:'',
+          visible:false,
     }
     this.instance=null;
 	}
@@ -26,7 +27,7 @@ class DropDown extends Component{
 
 	}
 	componentWillMount(){
-       const {classNameStr,visible}=this.props;
+      const {classNameStr,visible}=this.props;
       const classname=this.buildClassName(classNameStr,visible);
        this.setState({
        	  classname
@@ -50,6 +51,8 @@ class DropDown extends Component{
              this.count++;
              if(this.count >= 2){
                 this.instance.style['height']="0px";
+                this.instance.classList.remove('qhx-dropdown-show');
+                this.instance.classList.add('qhx-dropdown-hide');
                 this.count=0;
              }
          }
@@ -58,7 +61,7 @@ class DropDown extends Component{
   }
   componentWillUnmount(){
     this.mounted=false;
-    window.addEventListener('click',this.handleDocumentClick,false);
+    window.removeEventListener('click',this.handleDocumentClick,false);
   }
   refCallBack(instance){
     this.instance=instance;
@@ -70,15 +73,24 @@ class DropDown extends Component{
            const visibleStr=nextProps.visible ? 'show' : 'hide';
 	       const classname=classNames([
 	           [`${this.prefixCls}-${visibleStr}`]:visibleStr,
-	          [`${nextProps.classNameStr}`]:nextProps.classNameStr
+	           [`${nextProps.classNameStr}`]:nextProps.classNameStr
 	       ],this.prefixCls)
 	       this.setState({
 	       	  classname
 	       })
         }
+        if(nextProps.visible){
+           if(this.instance){
+                const {dataSource}=nextProps;
+                if(dataSource.length <= 10){
+                    this.instance.style['height']=(dataSource.length * 30 +1)+"px";
+                }else{
+                    this.instance.style['height']=(10 * 30 +1)+"px";
+                }
+           }
+        }
 	}
   shouldComponentUpdate(nextProps,nextState){
-
     return true;
   }
   handleDropDownClick=()=>{
@@ -96,22 +108,23 @@ class DropDown extends Component{
 	render(){
 		const {dataSource,visible}=this.props
 		const {classname}=this.state;
+    console.log("classname is "+classname);
 		return (
             <div className={classname} ref={this.refCallBack}>
                 <ul>
                     {
                     	dataSource.map((item,index)=>{
 
-                        if(index==(dataSource.length - 1) && visible){
-                          if(this.instance){
-                            if(dataSource.length <= 10){
-                              this.instance.style['height']=(dataSource.length * 30 +1)+"px";
-                            }else{
-                              this.instance.style['height']=(10 * 30 +1)+"px";
-                            }
+                        // if(index==(dataSource.length - 1) && visible){
+                        //   if(this.instance){
+                        //     if(dataSource.length <= 10){
+                        //       this.instance.style['height']=(dataSource.length * 30 +1)+"px";
+                        //     }else{
+                        //       this.instance.style['height']=(10 * 30 +1)+"px";
+                        //     }
 
-                          }
-                        }
+                        //   }
+                        // }
                     		return (
                                <li key={`dropdown-${index}`} className="dropdown-item" onClick={(e)=>this.handleItemClick(e,item)}>
                                    {item}

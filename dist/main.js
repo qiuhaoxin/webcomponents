@@ -100,7 +100,7 @@
             return __webpack_require__.d(getter, "a", getter), getter;
         }, __webpack_require__.o = function(object, property) {
             return Object.prototype.hasOwnProperty.call(object, property);
-        }, __webpack_require__.p = "./", __webpack_require__(__webpack_require__.s = 8);
+        }, __webpack_require__.p = "./", __webpack_require__(__webpack_require__.s = 9);
     }([ /* 0 */
     /***/
     function(module, exports) {
@@ -313,7 +313,7 @@
                 }
                 return memo[target];
             };
-        }(), singleton = null, singletonCounter = 0, stylesInsertedAtTop = [], fixUrls = __webpack_require__(13);
+        }(), singleton = null, singletonCounter = 0, stylesInsertedAtTop = [], fixUrls = __webpack_require__(14);
         module.exports = function(list, options) {
             if ("undefined" != typeof DEBUG && DEBUG && "object" != typeof document) throw new Error("The style-loader cannot be used in a non-browser environment");
             options = options || {}, options.attrs = "object" == typeof options.attrs ? options.attrs : {}, 
@@ -358,81 +358,11 @@
     }, /* 5 */
     /***/
     function(module, exports) {
-        module.exports = require("prop-types");
+        module.exports = require("react-dom");
     }, /* 6 */
     /***/
-    function(module, exports, __webpack_require__) {
-        "use strict";
-        function _interopRequireDefault(obj) {
-            return obj && obj.__esModule ? obj : {
-                default: obj
-            };
-        }
-        function _classCallCheck(instance, Constructor) {
-            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
-        }
-        function _possibleConstructorReturn(self, call) {
-            if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !call || "object" != typeof call && "function" != typeof call ? self : call;
-        }
-        function _inherits(subClass, superClass) {
-            if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-            subClass.prototype = Object.create(superClass && superClass.prototype, {
-                constructor: {
-                    value: subClass,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
-        }
-        Object.defineProperty(exports, "__esModule", {
-            value: !0
-        });
-        var _createClass = function() {
-            function defineProperties(target, props) {
-                for (var i = 0; i < props.length; i++) {
-                    var descriptor = props[i];
-                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
-                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
-                }
-            }
-            return function(Constructor, protoProps, staticProps) {
-                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
-                Constructor;
-            };
-        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(21);
-        var MyComponent = function(_PureComponent) {
-            function MyComponent(props) {
-                return _classCallCheck(this, MyComponent), _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this, props));
-            }
-            return _inherits(MyComponent, _PureComponent), _createClass(MyComponent, [ {
-                key: "componentWillReceiveProps",
-                value: function(nextProps) {}
-            }, {
-                key: "componentDidMount",
-                value: function() {}
-            }, {
-                key: "render",
-                value: function() {
-                    var _props = this.props, height = _props.height, width = _props.width, type = _props.type, lineColor = _props.lineColor, marginStyle = _props.marginStyle, translateOffset = _props.translateOffset;
-                    console.log("translateOffset is " + translateOffset);
-                    var classNameStr = (0, _classnames2.default)("wise-line", "wise-line-" + type);
-                    return _react2.default.createElement("div", {
-                        className: classNameStr,
-                        style: {
-                            width: width,
-                            height: height,
-                            background: lineColor,
-                            margin: marginStyle,
-                            transform: "translate(" + translateOffset + "px,0)"
-                        }
-                    });
-                }
-            } ]), MyComponent;
-        }(_react.PureComponent);
-        exports.default = MyComponent;
+    function(module, exports) {
+        module.exports = require("prop-types");
     }, /* 7 */
     /***/
     function(module, exports, __webpack_require__) {
@@ -475,7 +405,81 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(33), _reactDom2 = _interopRequireDefault(_reactDom);
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
+        __webpack_require__(22);
+        var MyComponent = function(_PureComponent) {
+            function MyComponent(props) {
+                return _classCallCheck(this, MyComponent), _possibleConstructorReturn(this, (MyComponent.__proto__ || Object.getPrototypeOf(MyComponent)).call(this, props));
+            }
+            return _inherits(MyComponent, _PureComponent), _createClass(MyComponent, [ {
+                key: "componentWillReceiveProps",
+                value: function(nextProps) {}
+            }, {
+                key: "componentDidMount",
+                value: function() {}
+            }, {
+                key: "render",
+                value: function() {
+                    var _props = this.props, height = _props.height, width = _props.width, type = _props.type, lineColor = _props.lineColor, marginStyle = _props.marginStyle, translateOffset = _props.translateOffset;
+                    console.log("translateOffset is " + translateOffset);
+                    var classNameStr = (0, _classnames2.default)("wise-line", "wise-line-" + type);
+                    return _react2.default.createElement("div", {
+                        className: classNameStr,
+                        style: {
+                            width: width,
+                            height: height,
+                            background: lineColor,
+                            margin: marginStyle,
+                            transform: "translate(" + translateOffset + "px,0)"
+                        }
+                    });
+                }
+            } ]), MyComponent;
+        }(_react.PureComponent);
+        exports.default = MyComponent;
+    }, /* 8 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        function _possibleConstructorReturn(self, call) {
+            if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !call || "object" != typeof call && "function" != typeof call ? self : call;
+        }
+        function _inherits(subClass, superClass) {
+            if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _reactDom = __webpack_require__(5), _reactDom2 = _interopRequireDefault(_reactDom);
         __webpack_require__(34);
         var _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), DropDown = (__webpack_require__(4), 
         function(_Component) {
@@ -489,6 +493,7 @@
                     var _this$props = _this.props, visible = _this$props.visible;
                     _this$props.classNameStr;
                     _this.mounted && (_reactDom2.default.findDOMNode(_this.instance).contains(event.target) || visible && ++_this.count >= 2 && (_this.instance.style.height = "0px", 
+                    _this.instance.classList.remove("qhx-dropdown-show"), _this.instance.classList.add("qhx-dropdown-hide"), 
                     _this.count = 0));
                 }, _this.handleDropDownClick = function() {
                     _this.setState({
@@ -500,7 +505,8 @@
                 }, _this.prefixCls = "qhx-dropdown", _this.handleDocumentClick = _this.handleDocumentClick.bind(_this), 
                 _this.refCallBack = _this.refCallBack.bind(_this), _this.mounted = !0, _this.count = 0, 
                 _this.state = {
-                    classname: ""
+                    classname: "",
+                    visible: !1
                 }, _this.instance = null, _this;
             }
             return _inherits(DropDown, _Component), _createClass(DropDown, [ {
@@ -520,7 +526,7 @@
             }, {
                 key: "componentWillUnmount",
                 value: function() {
-                    this.mounted = !1, window.addEventListener("click", this.handleDocumentClick, !1);
+                    this.mounted = !1, window.removeEventListener("click", this.handleDocumentClick, !1);
                 }
             }, {
                 key: "refCallBack",
@@ -536,6 +542,10 @@
                             classname: classname
                         });
                     }
+                    if (nextProps.visible && this.instance) {
+                        var dataSource = nextProps.dataSource;
+                        dataSource.length <= 10 ? this.instance.style.height = 30 * dataSource.length + 1 + "px" : this.instance.style.height = "301px";
+                    }
                 }
             }, {
                 key: "shouldComponentUpdate",
@@ -545,13 +555,22 @@
             }, {
                 key: "render",
                 value: function() {
-                    var _this2 = this, _props2 = this.props, dataSource = _props2.dataSource, visible = _props2.visible, classname = this.state.classname;
-                    return _react2.default.createElement("div", {
+                    var _this2 = this, _props2 = this.props, dataSource = _props2.dataSource, classname = (_props2.visible, 
+                    this.state.classname);
+                    return console.log("classname is " + classname), _react2.default.createElement("div", {
                         className: classname,
                         ref: this.refCallBack
                     }, _react2.default.createElement("ul", null, dataSource.map(function(item, index) {
-                        return index == dataSource.length - 1 && visible && _this2.instance && (dataSource.length <= 10 ? _this2.instance.style.height = 30 * dataSource.length + 1 + "px" : _this2.instance.style.height = "301px"), 
-                        _react2.default.createElement("li", {
+                        // if(index==(dataSource.length - 1) && visible){
+                        //   if(this.instance){
+                        //     if(dataSource.length <= 10){
+                        //       this.instance.style['height']=(dataSource.length * 30 +1)+"px";
+                        //     }else{
+                        //       this.instance.style['height']=(10 * 30 +1)+"px";
+                        //     }
+                        //   }
+                        // }
+                        return _react2.default.createElement("li", {
                             key: "dropdown-" + index,
                             className: "dropdown-item",
                             onClick: function(e) {
@@ -563,7 +582,7 @@
             } ]), DropDown;
         }(_react.Component));
         exports.default = DropDown;
-    }, /* 8 */
+    }, /* 9 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -593,8 +612,8 @@
         //     }
         //   }
         // });
-        module.exports = __webpack_require__(9);
-    }, /* 9 */
+        module.exports = __webpack_require__(10);
+    }, /* 10 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -606,49 +625,49 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         });
-        var _carouset = __webpack_require__(10);
+        var _carouset = __webpack_require__(11);
         Object.defineProperty(exports, "Carouset", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_carouset).default;
             }
         });
-        var _tab = __webpack_require__(18);
+        var _tab = __webpack_require__(19);
         Object.defineProperty(exports, "Tab", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_tab).default;
             }
         });
-        var _imgText = __webpack_require__(23);
+        var _imgText = __webpack_require__(24);
         Object.defineProperty(exports, "ImgText", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_imgText).default;
             }
         });
-        var _line = __webpack_require__(6);
+        var _line = __webpack_require__(7);
         Object.defineProperty(exports, "Line", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_line).default;
             }
         });
-        var _modal = __webpack_require__(26);
+        var _modal = __webpack_require__(27);
         Object.defineProperty(exports, "Modal", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_modal).default;
             }
         });
-        var _select = __webpack_require__(30);
+        var _select = __webpack_require__(31);
         Object.defineProperty(exports, "Select", {
             enumerable: !0,
             get: function() {
                 return _interopRequireDefault(_select).default;
             }
         });
-        var _dropDown = __webpack_require__(7);
+        var _dropDown = __webpack_require__(8);
         Object.defineProperty(exports, "DropDown", {
             enumerable: !0,
             get: function() {
@@ -669,7 +688,7 @@
                 return _interopRequireDefault(_exchange).default;
             }
         });
-    }, /* 10 */
+    }, /* 11 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -677,21 +696,6 @@
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
-        }
-        function _defineProperty(obj, key, value) {
-            return key in obj ? Object.defineProperty(obj, key, {
-                value: value,
-                enumerable: !0,
-                configurable: !0,
-                writable: !0
-            }) : obj[key] = value, obj;
-        }
-        function _toConsumableArray(arr) {
-            if (Array.isArray(arr)) {
-                for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-                return arr2;
-            }
-            return Array.from(arr);
         }
         function _classCallCheck(instance, Constructor) {
             if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
@@ -714,13 +718,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         });
-        var _extends = Object.assign || function(target) {
-            for (var i = 1; i < arguments.length; i++) {
-                var source = arguments[i];
-                for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
-            }
-            return target;
-        }, _createClass = function() {
+        var _createClass = function() {
             function defineProperties(target, props) {
                 for (var i = 0; i < props.length; i++) {
                     var descriptor = props[i];
@@ -732,248 +730,177 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(5), _propTypes2 = _interopRequireDefault(_propTypes), _index = __webpack_require__(11), _index2 = _interopRequireDefault(_index), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames), _left_arrow = __webpack_require__(14), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(15), _right_arrow2 = _interopRequireDefault(_right_arrow), _util = __webpack_require__(16);
-        console.log("styles is " + JSON.stringify(_index2.default));
-        var ieVersion = (0, _util.getIEVersion)(), Carouset = function(_Component) {
+        }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _propTypes = (__webpack_require__(5), 
+        __webpack_require__(6));
+        _interopRequireDefault(_propTypes);
+        __webpack_require__(12);
+        var _classnames = __webpack_require__(3), _left_arrow = (_interopRequireDefault(_classnames), 
+        __webpack_require__(15)), _left_arrow2 = _interopRequireDefault(_left_arrow), _right_arrow = __webpack_require__(16), _right_arrow2 = _interopRequireDefault(_right_arrow), _util = __webpack_require__(17), _immutable = __webpack_require__(4), Carouset = function(_Component) {
             function Carouset(props) {
                 _classCallCheck(this, Carouset);
                 var _this2 = _possibleConstructorReturn(this, (Carouset.__proto__ || Object.getPrototypeOf(Carouset)).call(this, props));
-                return _initialiseProps.call(_this2), _this2.prefixCls = "qhx-carouset", _this2.classNameStr = "", 
-                _this2.state = {
-                    imageLoaded: !1,
-                    offsetX: 0,
-                    offsetY: 0,
-                    loadErrorStatus: {},
-                    shouldAnimate: !1,
-                    transformX: 0
-                }, _this2;
+                return _initialiseProps.call(_this2), _this2.imgCache = {}, _this2;
             }
-            return _inherits(Carouset, _Component), _createClass(Carouset, null, [ {
-                key: "getTransform",
-                value: function(_ref) {
-                    var _ref$x = _ref.x, x = void 0 === _ref$x ? 0 : _ref$x, _ref$y = _ref.y, y = void 0 === _ref$y ? 0 : _ref$y, width = _ref.width, targetWidth = _ref.targetWidth, nextX = x, windowWidth = (0, 
-                    _util.getWindowWidth)();
-                    // console.log("windowWidth is "+windowWidth);
-                    width > windowWidth && (nextX += (windowWidth - width) / 2);
-                    // console.log("targetWidth is "+targetWidth+" and width is "+width);
-                    var scaleFactor = targetWidth / width * 1;
-                    //console.log("scaleFactor is "+scaleFactor);
-                    return {
-                        transform: "translate3d(" + nextX + "px," + y + "px,0) scale3d(" + scaleFactor + "," + scaleFactor + ",1)"
-                    };
-                }
-            } ]), _createClass(Carouset, [ {
-                key: "componentWillMount",
-                value: function() {
-                    this.classNameStr = (0, _classnames2.default)([ this.prefixCls + "-wrapper" ], "qhx-carouset"), 
-                    this.imageCache = {}, this.keyCounter = 0, this.moveRequested = !1, this.timeouts = [];
-                }
-            }, {
-                key: "componentWillReceiveProps",
-                value: function(nextProps) {
-                    var _this3 = this, sourcesChange = !1, prevSrcDist = {}, nextSrcDict = {};
-                    this.getSrcType().forEach(function(srcType) {
-                        _this3.props[srcType.name] !== nextProps[srcType.name] && (sourcesChange = !0, prevSrcDist[_this3.props[srcType.name]] = !0, 
-                        nextSrcDict[_this3.props[srcType.name]] = !0);
-                    }), (sourcesChange || this.moveRequested) && (Object.keys(prevSrcDist).forEach(function(prevSrc) {
-                        !(prevSrc in nextSrcDict) && prevSrc in _this3.imageCache && (_this3.imageCache[prevSrc].loaded = !1);
-                    }), this.moveRequested = !1, this.loadAllImages(nextProps));
-                }
-            }, {
+            return _inherits(Carouset, _Component), _createClass(Carouset, [ {
                 key: "shouldComponentUpdate",
                 value: function(nextProps, nextState) {
-                    return !0;
+                    return !(0, _immutable.is)((0, _immutable.fromJS)(nextProps), (0, _immutable.fromJS)(this.props)) || !(0, 
+                    _immutable.is)((0, _immutable.fromJS)(nextState), (0, _immutable.fromJS)(this.state));
+                }
+            }, {
+                key: "componentWillMount",
+                value: function() {
+                    this.props.dataSource;
                 }
             }, {
                 key: "componentDidMount",
                 value: function() {
-                    var _props = this.props;
-                    _props.dataSource, _props.classNameStr, _props.currentImg;
-                    // this.preloadImage(currentImg,this.handleImageLoaded);
-                    this.loadAllImages();
+                    var mainIndex = this.props.mainIndex;
+                    this.setState({
+                        curIndex: mainIndex
+                    }), this.loadAllImages(), window.addEventListener("resize", this.handleResize, !1);
                 }
             }, {
-                key: "getSrcType",
-                value: function() {
-                    return [ {
-                        name: "mainSrc",
-                        keyEnding: "i" + this.keyCounter
-                    }, {
-                        name: "nextSrc",
-                        keyEnding: "$i{this.keyCounter + 1}"
-                    }, {
-                        name: "preSrc",
-                        keyEnding: "" + (this.keyCounter - 1)
-                    } ];
+                key: "componentWillReceiveProps",
+                value: function(nextProps) {
+                    nextProps.mainIndex != this.props.mainIndex && this.setState({
+                        curIndex: nextProps.mainIndex
+                    });
                 }
-            }, {
-                key: "setTimeout",
-                value: function(_setTimeout) {
-                    function setTimeout(_x, _x2) {
-                        return _setTimeout.apply(this, arguments);
-                    }
-                    return setTimeout.toString = function() {
-                        return _setTimeout.toString();
-                    }, setTimeout;
-                }(function(func, time) {
-                    var id = setTimeout(function() {
-                        func();
-                    }, time);
-                    return this.timeouts.push(id), id;
-                })
             }, {
                 key: "render",
                 value: function() {
-                    var _this4 = this, _props2 = this.props, animationDuration = (_props2.dataSource, 
-                    _props2.animationDisabled, _props2.animationDuration), _state = this.state, slideDom = _state.slideDom, offsetX = _state.offsetX, offsetY = _state.offsetY, loadErrorStatus = _state.loadErrorStatus, images = [], boxSize = this.getCarousetRect(), transitionStyle = {};
-                    //if(!animationDisabled && this.isAnimating()){
-                    transitionStyle = _extends({}, transitionStyle, {
-                        transition: "transform " + animationDuration + "ms"
-                    });
-                    var keyEndings = {};
-                    this.getSrcType().forEach(function(_ref2) {
-                        var name = _ref2.name, keyEnding = _ref2.keyEnding;
-                        keyEndings[name] = keyEnding;
-                    });
-                    var addImage = function(srcType, imageClass, transform) {
-                        // console.log("srcType is "+srcType+" and imageSrc is "+this.props[srcType]);
-                        if (_this4.props[srcType]) {
-                            var bestImageInfo = _this4.getBestImageForType(srcType), imageStyle = _extends({}, transitionStyle, Carouset.getTransform(_extends({}, transform, bestImageInfo)));
-                            if (null === bestImageInfo && function(object) {
-                                return Object.keys(object).some(function(key) {
-                                    return object[key];
-                                });
-                            }(loadErrorStatus)) return void images.push(_react2.default.createElement("div", {
-                                style: imageSrc,
-                                className: imageClass + " ril-errored",
-                                key: _this4.props[srcType] + keyEndings[srcType]
-                            }, _react2.default.createElement("div", null, _this4.props.imageLoadErrorMessages)));
-                            if (null === bestImageInfo) {
-                                var loadingIcon = ieVersion < 10 ? _react2.default.createElement("div", {
-                                    className: _index2.default.loadingContainer__icon
-                                }, (0, _util.translate)("Loading...")) : _react2.default.createElement("div", {
-                                    className: "ril-loading-circle " + _index2.default.loadingCircle + " " + _index2.default.loadingContainer__icon
-                                }, [].concat(_toConsumableArray(new Array(12))).map(function(_, index) {
-                                    return _react2.default.createElement("div", {
-                                        key: index,
-                                        className: "ril-loading-circle-point " + _index2.default.loadingCirclePoint
-                                    });
-                                }));
-                                return void images.push(_react2.default.createElement("div", {
-                                    className: imageClass + " " + _index2.default.image + " ril-not-loaded",
-                                    style: imageStyle,
-                                    key: _this4.props[srcType] + keyEndings[srcType]
-                                }, _react2.default.createElement("div", {
-                                    className: _index2.default.loadingContainer
-                                }, loadingIcon)));
-                            }
-                            var imageSrc = bestImageInfo.src;
-                            images.push(_react2.default.createElement("img", {
-                                className: imageClass + " " + _index2.default.image,
-                                src: imageSrc,
-                                key: imageSrc + keyEndings[srcType],
-                                style: imageStyle,
-                                alt: "string" == typeof imageTitle ? imageTitle : (0, _util.translate)("Image"),
-                                draggable: !1
-                            }));
-                        }
-                    };
-                    //console.log("image is "+JSON.stringify(images));
-                    return addImage("nextSrc", "ril-image-next ril-image", {
-                        x: boxSize.width
-                    }), addImage("mainSrc", "ril-image-current ril-image", {
-                        x: -1 * offsetX,
-                        y: -1 * offsetY
-                    }), addImage("preSrc", "ril-image-prev ril-image", {
-                        x: -1 * boxSize.width
-                    }), _react2.default.createElement("div", {
-                        className: _index2.default["qhx-carouset"],
+                    var _this3 = this, dataSource = this.props.dataSource, curIndex = this.state.curIndex, slideDom = this.state.slideDom;
+                    return _react2.default.createElement("div", {
+                        className: "qhx-carouset",
                         ref: function(el) {
-                            _this4.outerEl = el;
+                            _this3.outerEl = el;
                         }
-                    }, slideDom ? "" : this.renderDefaultArrow("0"), _react2.default.createElement("div", {
-                        className: "ril-inner " + _index2.default.inner
-                    }, images), slideDom ? "" : this.renderDefaultArrow("1"));
+                    }, slideDom ? "" : this.renderDefaultArrow("0"), _react2.default.createElement("ul", null, dataSource.map(function(item) {
+                        var imgStyle = {}, BestImageInfo = _this3.getBestImageForType(item.imgPath);
+                        BestImageInfo && (console.log("targetWidth  is " + BestImageInfo.targetWidth), imgStyle.width = BestImageInfo.targetWidth, 
+                        imgStyle.height = Math.round(BestImageInfo.targetHeight));
+                        var offsetX = Carouset.getTranslateStyle(item.id - curIndex);
+                        return _react2.default.createElement("li", {
+                            style: offsetX,
+                            key: item.id
+                        }, _react2.default.createElement("img", {
+                            draggable: !1,
+                            style: imgStyle,
+                            src: item.imgPath
+                        }));
+                    })), slideDom ? "" : this.renderDefaultArrow("1"));
+                }
+            } ], [ {
+                key: "getTransform",
+                value: function() {
+                    var x = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0, y = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0, width = arguments[2], targetWidth = arguments[3], nextX = x, windowWidth = (0, 
+                    _util.getWindowWidth)();
+                    width > windowWidth && (nextX += (windowWidth - width) / 2);
+                    var scaleFactor = targetWidth / width * 1;
+                    return {
+                        transform: "translate3d(" + nextX + "px," + y + "px,0) scale3d(" + scaleFactor + "," + scaleFactor + ",1)"
+                    };
+                }
+            }, {
+                key: "getTranslateStyle",
+                value: function(dir) {
+                    return {
+                        transform: "translate3d(" + dir * (0, _util.getWindowWidth)() + "px,0,0)",
+                        transition: "transform .3s"
+                    };
                 }
             } ]), Carouset;
         }(_react.Component), _initialiseProps = function() {
-            var _this5 = this;
-            this.handleArrowClick = function(event, dir) {
-                console.log("dir is " + dir), 0 == dir ? _this5.requestMove("pre", event) : 1 == dir && _this5.requestMove("next", event);
-            }, this.requestMove = function(direction, event) {
-                var _this = _this5, nextState = {
-                    offsetX: 0,
-                    offsetY: 0
-                };
-                _this5.props.animationDisabled || (nextState.shouldAnimate = !0, _this5.setTimeout(function() {
-                    return _this5.setState({
-                        shouldAnimate: !1
-                    });
-                }, _this5.props.animationDuration)), _this5.setTimeout(function() {
-                    _this.moveRequested = !0, "pre" == direction ? (_this.keyCounter -= 1, _this.setState(nextState), 
-                    _this.props.onMovePreRequest(event)) : (_this.keyCounter += 1, _this.setState(nextState), 
-                    _this.props.onMoveNextRequest(event));
-                }, 300);
-            }, this.handleImageLoaded = function() {
-                _this5.setState({
-                    imageLoaded: !0
-                });
-            }, this.preloadImage = function(index, onload) {
-                var dataSource = _this5.props.dataSource, imgData = dataSource[index], img = new Image();
-                return img.onerror = onload, img.onload = onload, img.src = imgData.src, img;
+            var _this4 = this;
+            this.state = {
+                slideDom: !1,
+                curIndex: 0
+            }, this.handleResize = function(e) {
+                if (console.log("sdfsdfsdf"), _this4.imgCache) {
+                    var imgSrc = Object.keys(_this4.imgCache)[0], info = _this4.getBestImageForType(imgSrc);
+                    info.targetHeight > 0 && _this4.props.imgLoadSuccess(Math.round(info.targetHeight), Math.round(info.targetWidth));
+                }
+                _this4.forceUpdate();
+            }, this.setArrowRef = function(el, dir) {
+                0 == dir ? _this4.leftArrow = el : _this4.rightArrow = el;
+            }, this.renderDefaultArrow = function(dir) {
+                var dataSource = _this4.props.dataSource, curIndex = _this4.state.curIndex, className = "carouset-arrow " + (0 == dir ? "carouset-arrow-left" : "carouset-arrow-right");
+                return 0 == dir && 0 == curIndex ? className += " arrow-left-disable" : 0 == dir && (className += " arrow-enable"), 
+                1 == dir && curIndex == dataSource.length - 1 ? className += " arrow-right-disable" : 1 == dir && (className += " arrow-enable"), 
+                _react2.default.createElement("div", {
+                    className: className,
+                    onClick: function(e) {
+                        return _this4.handleArrowClick(e, dir);
+                    },
+                    ref: function(el) {
+                        return _this4.setArrowRef(el, dir);
+                    }
+                }, _react2.default.createElement("img", {
+                    src: 0 == dir ? _left_arrow2.default : _right_arrow2.default,
+                    className: 0 == dir ? "carouset-arrow-left" : "carouset-arrow-right"
+                }));
+            }, this.handleArrowClick = function(e, dir) {
+                var _props = _this4.props, dataSource = _props.dataSource, curIndex = (_props.requestNext, 
+                _this4.state.curIndex);
+                switch (dir) {
+                  case "0":
+                    if (0 == curIndex) return;
+                    _this4.requestLeft();
+                    break;
+
+                  case "1":
+                    if (curIndex == dataSource.length - 1) return;
+                    _this4.requestRight();
+                }
+            }, this.setArrowDisable = function(dir) {
+                var dataSource = _this4.props.dataSource, curIndex = _this4.state.curIndex;
+                0 == dir && 0 == curIndex ? (_this4.leftArrow.classList.remove("arrow-enable"), 
+                _this4.leftArrow.classList.add("arrow-left-disable")) : 1 == dir && curIndex == dataSource.length - 1 && (_this4.rightArrow.classList.remove("arrow-enable"), 
+                _this4.rightArrow.classList.add("arrow-right-disable"));
+            }, this.requestRight = function() {
+                var _props2 = (_this4.state.curIndex, _this4.props), requestNext = (_props2.dataSource, 
+                _props2.requestNext);
+                requestNext && requestNext();
+            }, this.requestLeft = function() {
+                var _props3 = _this4.props, requestPre = _props3.requestPre;
+                _props3.dataSource;
+                requestPre && requestPre();
             }, this.loadAllImages = function() {
-                var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : _this5.props, generateLoadDoneCallback = function(srcType, imageSrc) {
+                var _this = _this4, generateLoadDoneCallback = function(imageSrc) {
                     return function(err) {
-                        err || _this5.props[srcType] === imageSrc && _this5.forceUpdate();
+                        err || _this4.forceUpdate();
                     };
                 };
-                _this5.getSrcType().forEach(function(srcType) {
-                    var type = srcType.name;
-                    props[type] && _this5.state.loadErrorStatus[type] && _this5.setState(function(preState) {
-                        return {
-                            loadErrorStatus: _extends({}, preState.loadErrorStatus, _defineProperty({}, type, !1))
-                        };
-                    }), props[type] && !_this5.isImageLoaded(props[type]) && _this5.loadImage(type, props[type], generateLoadDoneCallback(type, props[type]));
+                (arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : _this4.props).dataSource.forEach(function(item) {
+                    _this.loadImage(item.imgPath, generateLoadDoneCallback(item.imgPath));
                 });
-            }, this.loadImage = function(srcType, imageSrc, done) {
-                var _this = _this5;
-                if (_this5.isImageLoaded(imageSrc)) return void _this5.setTimeout(function() {
-                    done();
-                }, 1);
-                var inMemoryImage = new Image();
-                inMemoryImage.onerror = function(errorEvent) {}, inMemoryImage.onload = function() {
-                    _this.props.onImageLoad(imageSrc, srcType, inMemoryImage), _this.imageCache[imageSrc] = {
+            }, this.loadImage = function(imgSrc, done) {
+                var _this = _this4, inmemory = new Image();
+                inmemory.onerror = function(event) {}, inmemory.onload = function(e) {
+                    _this.imgCache[imgSrc] = {
                         loaded: !0,
-                        width: inMemoryImage.width,
-                        height: inMemoryImage.height
-                    }, done();
-                }, inMemoryImage.src = imageSrc;
-            }, this.isImageLoaded = function(imageSrc) {
-                return imageSrc && imageSrc in _this5.imageCache && _this5.imageCache[imageSrc].loaded;
-            }, this.getBestImageForType = function(srcType) {
-                var imageSrc = _this5.props[srcType], fitSize = {};
-                return _this5.isImageLoaded(imageSrc) ? (fitSize = _this5.getFitSize(_this5.imageCache[imageSrc].width, _this5.imageCache[imageSrc].height, !0), 
-                {
-                    src: imageSrc,
-                    height: _this5.imageCache[imageSrc].height,
-                    width: _this5.imageCache[imageSrc].width,
+                        width: inmemory.width,
+                        height: inmemory.height
+                    };
+                    var info = _this.getBestImageForType(imgSrc);
+                    info.targetHeight > 0 && _this.props.imgLoadSuccess(Math.round(info.targetHeight), Math.round(info.targetWidth)), 
+                    done && done();
+                }, inmemory.src = imgSrc;
+            }, this.isImageLoaded = function(imgSrc) {
+                return imgSrc && _this4.imgCache[imgSrc] && _this4.imgCache[imgSrc].loaded;
+            }, this.getBestImageForType = function(imgSrc) {
+                var fitSize = {}, result = _this4.isImageLoaded(imgSrc), width = void 0, height = void 0;
+                return result ? (width = _this4.imgCache[imgSrc].width, height = _this4.imgCache[imgSrc].height, 
+                fitSize = _this4.getFitSize(width, height, !0), {
+                    src: imgSrc,
+                    height: height,
+                    width: width,
                     targetHeight: fitSize.height,
                     targetWidth: fitSize.width
                 }) : null;
-            }, this.getFitSize = function(width, height, stretch) {
-                // console.log("getFitSize widt is "+width+" and height is "+height);
-                var boxSize = _this5.getCarousetRect(), maxHeight = boxSize.height - 2 * _this5.props.imagePadding, maxWidth = boxSize.width - 2 * _this5.props.imagePadding;
-                // console.log("getFitSize maxHeight is "+maxHeight+" and maxWidth is "+maxWidth);
-                return stretch || (maxHeight = Math.min(maxHeight, height), maxWidth = Math.min(maxWidth, width)), 
-                maxWidth / maxHeight > width / height ? {
-                    width: width * maxHeight / height,
-                    height: maxHeight
-                } : {
-                    width: maxWidth,
-                    height: height * maxWidth / width
-                };
             }, this.getCarousetRect = function() {
-                return _this5.outerEl ? _this5.outerEl.getBoundingClientRect() : {
+                return _this4.outerEl ? _this4.outerEl.getBoundingClientRect() : {
                     width: (0, _util.getWindowWidth)(),
                     height: (0, _util.getWindowHeight)(),
                     top: 0,
@@ -981,46 +908,27 @@
                     right: 0,
                     bottom: 0
                 };
-            }, this.goToNext = function() {}, this.goToPre = function() {}, this.renderDefaultArrow = function(dir) {
-                // const className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
-                var arrowClass = 0 == dir ? _index2.default["carouset-arrow-left"] : _index2.default["carouset-arrow-right"], className = _index2.default["carouset-arrow"] + " " + arrowClass;
-                return _react2.default.createElement("div", {
-                    className: className,
-                    onClick: function(e) {
-                        return _this5.handleArrowClick(e, dir);
-                    }
-                }, _react2.default.createElement("img", {
-                    src: 0 == dir ? _left_arrow2.default : _right_arrow2.default,
-                    className: 0 == dir ? _index2.default["carouset-arrow-left"] : _index2.default["carouset-arrow-right"]
-                }));
-            }, this.isAnimating = function() {
-                return _this5.state.shouldAnimate;
-            }, this.renderIndirators = function() {
-                var _props3 = _this5.props, dataSource = _props3.dataSource;
-                _props3.currentImg;
-                return _react2.default.createElement("div", {
-                    className: "qhx-carouset-indicator"
-                }, dataSource.map(function(item, index) {
-                    return _react2.default.createElement("span", {
-                        className: "qhx-carouset-indicator-dot",
-                        key: "indicator-" + index
-                    });
-                }));
+            }, this.getFitSize = function(width, height, stretch) {
+                var boxSize = _this4.getCarousetRect();
+                console.log("boxSize is " + JSON.stringify(boxSize));
+                var maxHeight = boxSize.height - 2 * _this4.props.padding, maxWidth = boxSize.width - 2 * _this4.props.padding;
+                return maxWidth > 1030 && console.log("maxWidth is " + maxWidth), stretch || (maxHeight = Math.min(maxHeight, height), 
+                maxWidth = Math.min(maxWidth, width)), maxWidth / maxHeight > width / height ? {
+                    width: width * maxHeight / height,
+                    height: maxHeight
+                } : {
+                    width: maxWidth,
+                    height: height * maxWidth / width
+                };
             };
         };
-        Carouset.propsType = {
-            imageLoadErrorMessages: _propTypes2.default.node
-        }, Carouset.defaultProps = {
-            onImageLoad: function() {},
-            imagePadding: 0,
-            animationDisabled: !1,
-            animationDuration: 300,
-            imageLoadErrorMessages: "this image failed to load"
-        }, exports.default = Carouset;
-    }, /* 11 */
+        exports.default = Carouset, Carouset.defaultProps = {
+            padding: 0
+        }, Carouset.propType = {};
+    }, /* 12 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(12);
+        var content = __webpack_require__(13);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1028,13 +936,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 12 */
+    }, /* 13 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
-        exports.push([ module.i, ".test {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.test img {\n  position: absolute;\n  right: 0;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset {\n  background: #eee;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul > li {\n  list-style: none;\n  position: absolute;\n  overflow: hidden;\n  left: 0;\n  top: 0;\n  width: 100%;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  width: 19px;\n  height: 36px;\n  top: 50%;\n  margin-top: -18px;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n.inner {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.image {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  max-width: none;\n  -ms-content-zooming: none;\n  -ms-user-select: none;\n  -ms-touch-select: none;\n  touch-action: none;\n}\n", "" ]);
-    }, /* 13 */
+        exports.push([ module.i, ".test {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n}\n.test img {\n  position: absolute;\n  right: 0;\n  left: 0;\n  top: 0;\n}\n.qhx-carouset {\n  background: #eee;\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul {\n  width: 100%;\n  overflow: hidden;\n}\n.qhx-carouset > ul > li {\n  list-style: none;\n  position: absolute;\n  overflow: hidden;\n  left: 0;\n  top: 0;\n  width: 100%;\n}\n.qhx-carouset > ul > li img {\n  -webkit-use-select: none;\n  use-select: none;\n}\n.carouset-arrow {\n  position: absolute;\n  z-index: 100;\n  background: rgba(0, 0, 0, 0);\n  top: 50%;\n  padding: 16px 16px;\n  margin-top: -18px;\n}\n.carouset-arrow.arrow-enable:hover {\n  cursor: pointer;\n  background: rgba(0, 0, 0, 0.2);\n}\n.carouset-arrow.arrow-left-disable,\n.carouset-arrow.arrow-right-disable {\n  cursor: pointer;\n}\n.carouset-arrow-left {\n  left: 20px;\n}\n.carouset-arrow-right {\n  right: 20px;\n}\n.qhx-carouset-indicator {\n  position: absolute;\n  bottom: 30px;\n  left: 50%;\n  z-index: 100;\n  display: inline-flex;\n  align-items: center;\n}\n.qhx-carouset-indicator-dot {\n  position: relative;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: #fff;\n  margin-left: 10px;\n}\n.qhx-carouset-indicator-dot:before {\n  content: '';\n  position: relative;\n  border-radius: 50%;\n  background: #fff;\n}\n.inner {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.image {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  max-width: none;\n  -ms-content-zooming: none;\n  -ms-user-select: none;\n  -ms-touch-select: none;\n  touch-action: none;\n}\n", "" ]);
+    }, /* 14 */
     /***/
     function(module, exports) {
         /**
@@ -1074,15 +982,15 @@
                 "url(" + JSON.stringify(newUrl) + ")";
             });
         };
-    }, /* 14 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        module.exports = __webpack_require__.p + "static/left_arrow.png";
     }, /* 15 */
     /***/
     function(module, exports, __webpack_require__) {
-        module.exports = __webpack_require__.p + "static/right_arrow.png";
+        module.exports = __webpack_require__.p + "static/left_arrow.png";
     }, /* 16 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = __webpack_require__.p + "static/right_arrow.png";
+    }, /* 17 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1112,8 +1020,8 @@
                 value: !0
             }), exports.getWindowWidth = getWindowWidth, exports.getWindowHeight = getWindowHeight, 
             exports.getIEVersion = getIEVersion, exports.translate = translate;
-        }).call(exports, __webpack_require__(17));
-    }, /* 17 */
+        }).call(exports, __webpack_require__(18));
+    }, /* 18 */
     /***/
     function(module, exports) {
         var g;
@@ -1132,7 +1040,7 @@
         // We return undefined, instead of nothing here, so it's
         // easier to handle this case. if(!global) { ...}
         module.exports = g;
-    }, /* 18 */
+    }, /* 19 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1175,8 +1083,8 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react);
-        __webpack_require__(19);
-        var _line = __webpack_require__(6), _line2 = _interopRequireDefault(_line), _classnames = __webpack_require__(3), Tab = (_interopRequireDefault(_classnames), 
+        __webpack_require__(20);
+        var _line = __webpack_require__(7), _line2 = _interopRequireDefault(_line), _classnames = __webpack_require__(3), Tab = (_interopRequireDefault(_classnames), 
         function(_Component) {
             function Tab(props) {
                 _classCallCheck(this, Tab);
@@ -1246,10 +1154,10 @@
             } ]), Tab;
         }(_react.Component));
         exports.default = Tab;
-    }, /* 19 */
+    }, /* 20 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(20);
+        var content = __webpack_require__(21);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1257,16 +1165,16 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 20 */
+    }, /* 21 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".tab-wrapper {\n  display: flex;\n  flex-direction: column;\n}\n.tab-wrapper > ul {\n  display: inline-flex;\n  padding: 0;\n  font-size: 20px;\n  cursor: pointer;\n  color: #4f5255;\n}\n.tab-wrapper > ul > li {\n  display: inline-flex;\n  list-style: none;\n  justify-content: center;\n  align-items: flex-end;\n  padding-bottom: 15px;\n  height: 40px;\n  min-width: 100px;\n}\n.tab-wrapper > ul > li:hover {\n  color: #2d8cf0;\n}\n.tab-wrapper > ul > li.active {\n  color: #2d8cf0;\n}\n.tab-wrapper .wise-line {\n  -webkit-transition: transform 200ms;\n  transition: transform 200ms;\n}\n", "" ]);
-    }, /* 21 */
+    }, /* 22 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(22);
+        var content = __webpack_require__(23);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1274,13 +1182,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 22 */
+    }, /* 23 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".wise-line {\n  border: 1px solid #eee;\n  margin: 0 10px;\n  background: #eee;\n}\n", "" ]);
-    }, /* 23 */
+    }, /* 24 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1323,7 +1231,7 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(24);
+        __webpack_require__(25);
         var ImgText = function(_Component) {
             function ImgText(props) {
                 _classCallCheck(this, ImgText);
@@ -1398,10 +1306,10 @@
             } ]), ImgText;
         }(_react.Component);
         exports.default = ImgText;
-    }, /* 24 */
+    }, /* 25 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(25);
+        var content = __webpack_require__(26);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1409,13 +1317,13 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 25 */
+    }, /* 26 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-imgtext {\n  display: flex;\n  width: 100%;\n}\n.qhx-imgtext > ul {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n}\n.qhx-imgtext > ul > li {\n  flex-grow: 1;\n  border: 1px solid #eee;\n  position: relative;\n}\n.qhx-imgtext-column {\n  flex-direction: column;\n  display: flex;\n}\n.qhx-imgtext-row {\n  flex-direction: row;\n  display: flex;\n}\n.qhx-imgtext-text {\n  display: flex;\n  flex-direction: column;\n}\n", "" ]);
-    }, /* 26 */
+    }, /* 27 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1458,8 +1366,8 @@
                 Constructor;
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3), _classnames2 = _interopRequireDefault(_classnames);
-        __webpack_require__(27);
-        var _propTypes = __webpack_require__(5), _propTypes2 = _interopRequireDefault(_propTypes), _addEventListener = __webpack_require__(29), _addEventListener2 = _interopRequireDefault(_addEventListener), mousePosition = {
+        __webpack_require__(28);
+        var _propTypes = __webpack_require__(6), _propTypes2 = _interopRequireDefault(_propTypes), _addEventListener = __webpack_require__(30), _addEventListener2 = _interopRequireDefault(_addEventListener), mousePosition = {
             x: 0,
             y: 0
         }, Modal = function(_Component) {
@@ -1534,10 +1442,10 @@
         Modal.propTypes = {
             title: _propTypes2.default.string
         }, exports.default = Modal;
-    }, /* 27 */
+    }, /* 28 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(28);
+        var content = __webpack_require__(29);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1545,17 +1453,17 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 28 */
+    }, /* 29 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
         exports.push([ module.i, ".qhx-modal {\n  position: absolute;\n  z-index: 100;\n  width: 880px;\n  border: 1px solid #eee;\n  border-radius: 8px;\n  left: 50%;\n  margin-left: -440px;\n  top: 10%;\n}\n.qhx-modal.qhx-modal-hide {\n  transform: scale(0);\n  transform-origin: 0 100%;\n  transition: transform 0.3s ease-in;\n}\n.qhx-modal.qhx-modal-show {\n  transform: scale(100%);\n  transform-origin: 0 100%;\n  transition: transform 0.3s ease-in;\n}\n.qhx-modal-title {\n  display: inline-flex;\n  justify-content: flex-start;\n  height: 40px;\n  align-items: center;\n  position: relative;\n  width: 100%;\n}\n.qhx-modal-title span {\n  padding-left: 30px;\n}\n.qhx-modal-title:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  width: 100%;\n  bottom: 0;\n  border-top: 1px solid #eee;\n}\n.qhx-modal-body {\n  min-height: 100px;\n  padding-bottom: 40px;\n}\n.qhx-modal-footer {\n  height: 50px;\n  width: 100%;\n  display: inline-flex;\n  justify-content: flex-end;\n  border-top: 1px solid #eee;\n  align-items: center;\n  cursor: pointer;\n}\n.qhx-modal-footer div {\n  padding-right: 30px;\n}\n.qhx-modal-footer span {\n  padding: 5px 15px;\n  font-size: 14px;\n  border-radius: 4px;\n}\n.qhx-modal-footer .qhx-modal-ok {\n  background: #1890ff;\n  color: #fff;\n}\n.qhx-modal-footer .qhx-modal-cancel {\n  border: 1px solid #eee;\n  margin-right: 20px;\n}\n", "" ]);
-    }, /* 29 */
+    }, /* 30 */
     /***/
     function(module, exports) {
         module.exports = require("rc-util/lib/Dom/addEventListener");
-    }, /* 30 */
+    }, /* 31 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1599,8 +1507,8 @@
             };
         }(), _react = __webpack_require__(0), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(3);
         _interopRequireDefault(_classnames);
-        __webpack_require__(31);
-        var _dropDown = __webpack_require__(7), _dropDown2 = _interopRequireDefault(_dropDown), _immutable = __webpack_require__(4), Select = function(_Component) {
+        __webpack_require__(32);
+        var _dropDown = __webpack_require__(8), _dropDown2 = _interopRequireDefault(_dropDown), _immutable = __webpack_require__(4), Select = function(_Component) {
             function Select(props) {
                 _classCallCheck(this, Select);
                 var _this = _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).call(this, props));
@@ -1610,7 +1518,7 @@
                     value: "",
                     defaultValue: ""
                 }, _this.handleClick = function(e) {
-                    console.log("dropDownVisible is " + _this.state.dropDownVisible), _this.setState({
+                    _this.setState({
                         dropDownVisible: !0
                     });
                 }, _this.handleSelectItem = function(itemValue) {
@@ -1624,7 +1532,7 @@
                 key: "componentWillMount",
                 value: function() {
                     var _props = this.props, value = _props.value, defaultValue = _props.defaultValue;
-                    console.log("value is " + value + " and defaultValue is " + defaultValue), this.setState({
+                    this.setState({
                         value: value,
                         defaultValue: defaultValue
                     });
@@ -1639,16 +1547,17 @@
                 key: "shouldComponentUpdate",
                 value: function(nextProps, nextState) {
                     return !(0, _immutable.is)((0, _immutable.fromJS)(nextProps), (0, _immutable.fromJS)(this.props)) || !(0, 
-                    _immutable.is)((0, _immutable.fromJS)(nextState), (0, _immutable.fromJS)(this.state));
+                    _immutable.is)((0, _immutable.fromJS)(nextState), (0, _immutable.fromJS)(this.state)) || nextState.dropDownVisible;
                 }
             }, {
                 key: "render",
                 value: function() {
-                    var _props2 = this.props, dataSource = _props2.dataSource, value = _props2.value, defaultValue = _props2.defaultValue;
-                    console.log("render value is " + value + " and defaultValue is " + defaultValue);
-                    var dropDownVisible = this.state.dropDownVisible;
+                    var _this2 = this, _props2 = this.props, dataSource = _props2.dataSource, value = _props2.value, defaultValue = _props2.defaultValue, dropDownVisible = this.state.dropDownVisible;
                     return _react2.default.createElement("div", {
-                        className: "qhx-select"
+                        className: "qhx-select",
+                        ref: function(el) {
+                            return _this2.selectEl = el;
+                        }
                     }, _react2.default.createElement("div", {
                         className: "qhx-select-input",
                         onClick: this.handleClick
@@ -1659,16 +1568,17 @@
                     })), _react2.default.createElement(_dropDown2.default, {
                         dataSource: dataSource,
                         visible: dropDownVisible,
-                        itemClick: this.handleSelectItem
+                        itemClick: this.handleSelectItem,
+                        selectDom: this.selectEl
                     }));
                 }
             } ]), Select;
         }(_react.Component);
         exports.default = Select;
-    }, /* 31 */
+    }, /* 32 */
     /***/
     function(module, exports, __webpack_require__) {
-        var content = __webpack_require__(32);
+        var content = __webpack_require__(33);
         "string" == typeof content && (content = [ [ module.i, content, "" ] ]);
         var options = {
             hmr: !0
@@ -1676,16 +1586,12 @@
         options.transform = void 0, options.insertInto = void 0;
         __webpack_require__(2)(content, options);
         content.locals && (module.exports = content.locals);
-    }, /* 32 */
+    }, /* 33 */
     /***/
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
-        exports.push([ module.i, ".qhx-select {\n  width: 180px;\n  position: relative;\n}\n.qhx-select-input {\n  border: 1px solid #eee;\n  border-radius: 6px;\n  width: 100%;\n  padding: 5px 0;\n  display: inline-flex;\n  cursor: pointer;\n}\n.qhx-select-input .qhx-select-content {\n  flex-grow: 2;\n  padding-left: 4px;\n}\n.qhx-select-input .qhx-select-icon {\n  position: relative;\n}\n.qhx-select-input .qhx-select-icon:before {\n  content: '';\n  position: absolute;\n  right: 7px;\n  border-top: 6px solid #555;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  top: 50%;\n  margin-top: -3px;\n}\n", "" ]);
-    }, /* 33 */
-    /***/
-    function(module, exports) {
-        module.exports = require("react-dom");
+        exports.push([ module.i, ".qhx-select {\n  width: 180px;\n  position: relative;\n}\n.qhx-select-input {\n  border: 1px solid #eee;\n  border-radius: 6px;\n  width: 100%;\n  padding: 5px 0;\n  display: inline-flex;\n  cursor: pointer;\n}\n.qhx-select-input .qhx-select-content {\n  flex-grow: 2;\n  padding-left: 4px;\n}\n.qhx-select-input .qhx-select-icon {\n  position: relative;\n}\n.qhx-select-input .qhx-select-icon:before {\n  content: '';\n  position: absolute;\n  right: 7px;\n  border-top: 6px solid #e2e2e2;\n  border-left: 6px solid transparent;\n  border-right: 6px solid transparent;\n  top: 50%;\n  margin-top: -3px;\n}\n", "" ]);
     }, /* 34 */
     /***/
     function(module, exports, __webpack_require__) {
@@ -1702,7 +1608,7 @@
     function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(1)(!1), // imports
         // module
-        exports.push([ module.i, ".qhx-dropdown {\n  position: absolute;\n  left: 0px;\n  top: 33px;\n  overflow-y: scroll;\n  right: 0;\n  z-index: 99;\n  border-bottom-left-radius: 6px;\n  border-bottom-right-radius: 6px;\n  border-bottom: 1px solid #eee;\n}\n.qhx-dropdown-hide {\n  height: 0px;\n  transition: all 0.2s ease-in;\n}\n.qhx-dropdown-show {\n  transition: all 0.2s ease-in;\n}\n.qhx-dropdown > ul {\n  background: #fff;\n  width: 100%;\n  cursor: pointer;\n}\n.qhx-dropdown > ul > li {\n  padding: 0px 10px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  position: relative;\n  border: 1px solid #eee;\n  border-bottom: none;\n  border-top: none;\n}\n.qhx-dropdown > ul > li:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.qhx-dropdown > ul > li:hover {\n  background: #e6f7ff;\n}\n", "" ]);
+        exports.push([ module.i, ".qhx-dropdown {\n  position: absolute;\n  left: 0px;\n  top: 33px;\n  overflow-y: scroll;\n  right: 0;\n  z-index: 99;\n  border-bottom-left-radius: 6px;\n  border-bottom-right-radius: 6px;\n}\n.qhx-dropdown-hide {\n  height: 0px;\n  transition: all 0.2s ease-in;\n}\n.qhx-dropdown-show {\n  transition: all 0.2s ease-in;\n  border-bottom: 1px solid #eee;\n}\n.qhx-dropdown > ul {\n  background: #fff;\n  width: 100%;\n  cursor: pointer;\n}\n.qhx-dropdown > ul > li {\n  padding: 0px 10px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  position: relative;\n  border: 1px solid #eee;\n  border-bottom: none;\n  border-top: none;\n}\n.qhx-dropdown > ul > li:after {\n  content: '';\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.qhx-dropdown > ul > li:hover {\n  background: #e6f7ff;\n}\n", "" ]);
     }, /* 36 */
     /***/
     function(module, exports, __webpack_require__) {
