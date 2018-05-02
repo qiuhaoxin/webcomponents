@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
 
-import arrowLeft from '../icons/arrowLeft';
-import arrowRight from '../icons/arrowRight';
-import close from '../icons/close';
+import arrowLeft from '../../icons/arrowLeft';
+import arrowRight from '../../icons/arrowRight';
+import close from '../../icons/close';
 
 const icons={arrowLeft,arrowRight,close};
 

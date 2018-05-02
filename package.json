@@ -18,6 +18,7 @@
   "author": "qiuhaoxin",
   "license": "ISC",
   "dependencies": {
+    "aphrodite": "^2.2.0",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.1",

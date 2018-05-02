@@ -5,19 +5,27 @@ import './index.less';
 import classNames from 'classnames';
 import leftArrow from '../../images/left_arrow.png';
 import rightArrow from '../../images/right_arrow.png';
-import {getWindowWidth,getWindowHeight} from '../../utils/util';
+import {getWindowWidth,getWindowHeight,deepMerge} from '../../utils/util';
 import {fromJS,is} from 'immutable';
+import Arrow from '../arrow';
+import defaultTheme from '../../theme';
 
 export default class Carouset extends Component{
      constructor(props){
         super(props);
         this.imgCache={};
 
+        this.theme=deepMerge(defaultTheme,props.theme);
      }
      state={
        slideDom:false,
        curIndex:0,
      }
+     getChildContext () {
+        return {
+          theme: this.theme,
+        };
+      }
      static getTransform(x=0,y=0,width,targetWidth,){
         let nextX=x;
         const windowWidth=getWindowWidth();
@@ -73,29 +81,64 @@ export default class Carouset extends Component{
         }
      }
 
-     setArrowRef=(el,dir)=>{
-        dir==0?(this.leftArrow=el):(this.rightArrow=el)
-     }
+  setArrowRef=(el,dir)=>{
+    dir==0?(this.leftArrow=el):(this.rightArrow=el)
+  }
+  renderArrowPrev () {
+    //if (this.props.currentImage === 0) return null;
+
+    return (
+      <Arrow
+        direction="left"
+        icon="arrowLeft"
+        onClick={this.handleArrowClick}
+        title={"left arrow"}
+        type="button"
+      />
+    );
+  }
+  renderArrowNext () {
+    //if (this.props.currentImage === (this.props.images.length - 1)) return null;
+
+    return (
+      <Arrow
+        direction="right"
+        icon="arrowRight"
+        onClick={this.handleArrowClick}
+        title={this.props.rightArrowTitle}
+        type="button"
+      />
+    );
+  }
      //渲染左右滑动的箭头  1:左滑（右侧按钮） 0：右滑（左侧按钮）
+    // renderDefaultArrow=(dir)=>{
+    //       const {dataSource}=this.props;
+    //       const {curIndex}=this.state;
+    //       let className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
+    //       if(dir==0 && curIndex==0){
+    //         className+=" arrow-left-disable";
+    //       }else if(dir==0){
+    //         className+=" arrow-enable";
+    //       }
+    //       if(dir==1 && curIndex==(dataSource.length - 1)){
+    //           className+=" arrow-right-disable";
+    //       }else if(dir==1){
+    //         className+=" arrow-enable";
+    //       }
+    //       return (
+    //         <div className={className}  onClick={(e)=>this.handleArrowClick(e,dir)} ref={(el)=>this.setArrowRef(el,dir)} >
+    //             <img src={dir==0?leftArrow:rightArrow} className={dir==0?'carouset-arrow-left':'carouset-arrow-right'}/>
+    //         </div>
+    //       )
+    // }
     renderDefaultArrow=(dir)=>{
-          const {dataSource}=this.props;
-          const {curIndex}=this.state;
-          let className="carouset-arrow "+(dir==0?'carouset-arrow-left':'carouset-arrow-right');
-          if(dir==0 && curIndex==0){
-            className+=" arrow-left-disable";
-          }else if(dir==0){
-            className+=" arrow-enable";
-          }
-          if(dir==1 && curIndex==(dataSource.length - 1)){
-              className+=" arrow-right-disable";
-          }else if(dir==1){
-            className+=" arrow-enable";
-          }
-          return (
-            <div className={className}  onClick={(e)=>this.handleArrowClick(e,dir)} ref={(el)=>this.setArrowRef(el,dir)} >
-                <img src={dir==0?leftArrow:rightArrow} className={dir==0?'carouset-arrow-left':'carouset-arrow-right'}/>
-            </div>
-          )
+      if(dir==0){
+        this.renderArrowPrev()
+      }
+      if(dir==1){
+        this.renderArrowNext()
+      }
+
     }
     handleArrowClick=(e,dir)=>{
         const {dataSource,requestNext}=this.props;
@@ -246,7 +289,8 @@ export default class Carouset extends Component{
         return (
            <div className="qhx-carouset" ref={(el)=>{this.outerEl=el;}}>
               {
-                slideDom ? '' : this.renderDefaultArrow('0')
+                slideDom ? '' : this.renderArrowPrev()
+                // this.renderDefaultArrow('0')
               }
               <ul>
               {
@@ -264,7 +308,9 @@ export default class Carouset extends Component{
               }
               </ul>
               {
-                slideDom ? '' : this.renderDefaultArrow('1')
+                slideDom ? '' : this.renderArrowNext()
+
+                //this.renderDefaultArrow('1')
               }
 
            </div>
@@ -276,4 +322,7 @@ Carouset.defaultProps={
 }
 Carouset.propType={
 
+}
+Carouset.childContextTypes={
+  theme:PropTypes.object.isRequired,
 }
